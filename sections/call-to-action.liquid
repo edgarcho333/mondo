@@ -24,11 +24,31 @@
           <h2 class="t4s-cta-title">{{ se_stts.title }}</h2>
         {% endif %}
         
-        {% if se_stts.button_text != blank and se_stts.button_link != blank %}
-          <a href="{{ se_stts.button_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button_style }}">
-            {{ se_stts.button_text }}
-          </a>
-        {% endif %}
+        <div class="t4s-cta-buttons">
+          {% if se_stts.button1_text != blank and se_stts.button1_link != blank %}
+            <a href="{{ se_stts.button1_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button1_style }}">
+              {{ se_stts.button1_text }}
+            </a>
+          {% endif %}
+          
+          {% if se_stts.button2_text != blank and se_stts.button2_link != blank %}
+            <a href="{{ se_stts.button2_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button2_style }}">
+              {{ se_stts.button2_text }}
+            </a>
+          {% endif %}
+          
+          {% if se_stts.button3_text != blank and se_stts.button3_link != blank %}
+            <a href="{{ se_stts.button3_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button3_style }}">
+              {{ se_stts.button3_text }}
+            </a>
+          {% endif %}
+          
+          {% if se_stts.button4_text != blank and se_stts.button4_link != blank %}
+            <a href="{{ se_stts.button4_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button4_style }}">
+              {{ se_stts.button4_text }}
+            </a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
@@ -49,12 +69,19 @@
   font-size: 32px;
   margin-bottom: 20px;
 }
+.t4s-cta-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .t4s-btn {
   display: inline-block;
   padding: 12px 24px;
   text-decoration: none;
   border-radius: 4px;
   transition: all 0.3s ease;
+  min-width: 120px;
 }
 .t4s-btn-style-primary {
   background-color: #000;
@@ -89,20 +116,24 @@
       "label": "Banner Image"
     },
     {
+      "type": "header",
+      "content": "Button 1 Settings"
+    },
+    {
       "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
+      "id": "button1_text",
+      "label": "Button 1 Text",
       "default": "Click Here"
     },
     {
       "type": "url",
-      "id": "button_link",
-      "label": "Button Link"
+      "id": "button1_link",
+      "label": "Button 1 Link"
     },
     {
       "type": "select",
-      "id": "button_style",
-      "label": "Button Style",
+      "id": "button1_style",
+      "label": "Button 1 Style",
       "options": [
         {
           "value": "primary",
@@ -114,6 +145,99 @@
         }
       ],
       "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "Button 2 Settings"
+    },
+    {
+      "type": "text",
+      "id": "button2_text",
+      "label": "Button 2 Text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button2_link",
+      "label": "Button 2 Link"
+    },
+    {
+      "type": "select",
+      "id": "button2_style",
+      "label": "Button 2 Style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "secondary"
+    },
+    {
+      "type": "header",
+      "content": "Button 3 Settings"
+    },
+    {
+      "type": "text",
+      "id": "button3_text",
+      "label": "Button 3 Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button3_link",
+      "label": "Button 3 Link"
+    },
+    {
+      "type": "select",
+      "id": "button3_style",
+      "label": "Button 3 Style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "header",
+      "content": "Button 4 Settings"
+    },
+    {
+      "type": "text",
+      "id": "button4_text",
+      "label": "Button 4 Text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "button4_link",
+      "label": "Button 4 Link"
+    },
+    {
+      "type": "select",
+      "id": "button4_style",
+      "label": "Button 4 Style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "secondary"
     }
   ],
   "presets": [
