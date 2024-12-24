@@ -1,0 +1,126 @@
+{{ 'section.css' | asset_url | stylesheet_tag }}
+{{ 'banner.css' | asset_url | stylesheet_tag }}
+<link href="{{ 't4s-animation.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+
+{%- liquid
+  assign sid = section.id
+  assign se_stts = section.settings
+  assign se_blocks = section.blocks
+-%}
+
+<div class="t4s-section-inner t4s_nt_se_{{ sid }} t4s_se_{{ sid }} t4s-container">
+  <div class="t4s-container">
+    <div class="t4s-cta-holder t4s-text-center">
+      {% if se_stts.banner_image != blank %}
+        <div class="t4s-cta-banner">
+          <img src="{{ se_stts.banner_image | img_url: 'master' }}" 
+               alt="{{ se_stts.title | escape }}"
+               class="t4s-banner-img lazyloadt4s">
+        </div>
+      {% endif %}
+      
+      <div class="t4s-cta-content">
+        {% if se_stts.title != blank %}
+          <h2 class="t4s-cta-title">{{ se_stts.title }}</h2>
+        {% endif %}
+        
+        {% if se_stts.button_text != blank and se_stts.button_link != blank %}
+          <a href="{{ se_stts.button_link }}" class="t4s-btn t4s-btn-style-{{ se_stts.button_style }}">
+            {{ se_stts.button_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.t4s-cta-holder {
+  padding: 60px 0;
+}
+.t4s-cta-banner {
+  margin-bottom: 30px;
+}
+.t4s-banner-img {
+  max-width: 100%;
+  height: auto;
+}
+.t4s-cta-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+.t4s-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.t4s-btn-style-primary {
+  background-color: #000;
+  color: #fff;
+}
+.t4s-btn-style-secondary {
+  background-color: transparent;
+  border: 2px solid #000;
+  color: #000;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Call to Action",
+  "tag": "section",
+  "class": "t4s-section t4s-section-all",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Your Call to Action Title"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click Here"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button Style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary"
+        }
+      ],
+      "default": "primary"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action",
+      "category": "Promotional"
+    }
+  ]
+}
+{% endschema %}
