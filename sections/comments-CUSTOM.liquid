@@ -1,0 +1,113 @@
+{{ 'comments-CUSTOM.css' | asset_url | stylesheet_tag }}
+
+<div class="comments-section">
+  <button class="slider-arrow prev" onclick="moveSlider(-1)">←</button>
+  <div class="comments-slider-container">
+    <div class="comments-slider" id="comments-slider">
+      {% for block in section.blocks %}
+        <div class="comment-slide" {{ block.shopify_attributes }}>
+          <div class="stars">
+            {% for i in (1..block.settings.rating) %}
+              <span class="star">★</span>
+            {% endfor %}
+          </div>
+          <h3 class="comment-title">"{{ block.settings.title }}"</h3>
+          <p class="quote">{{ block.settings.quote }}</p>
+          <p class="author">{{ block.settings.author }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <button class="slider-arrow next" onclick="moveSlider(1)">→</button>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.comment-slide');
+const slidesToShow = 3;
+
+function moveSlider(direction) {
+  const maxSlides = slides.length - slidesToShow;
+  currentSlide = Math.max(0, Math.min(currentSlide + direction, maxSlides));
+  updateSlider();
+}
+
+function updateSlider() {
+  const slider = document.getElementById('comments-slider');
+  const slideWidth = slides[0].offsetWidth;
+  slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+}
+
+window.addEventListener('load', () => {
+  updateSlider();
+});
+
+window.addEventListener('resize', () => {
+  updateSlider();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Comments Slider (CUSTOM)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Customer Reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Comment Title",
+          "default": "COFFEE MADE EASY - JUST LIKE A TEABAG"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote Text",
+          "default": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "ANNA D"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comments Slider",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,92 @@
+{{ 'coffee-products-cards-CUSTOM.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} sections/coffee-products.liquid {%- endcomment -%}
+<div class="coffee-products">
+  <div class="coffee-products__grid">
+    {%- for block in section.blocks -%}
+      <div class="coffee-card" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img 
+            src="{{ block.settings.image | img_url: 'master' }}"
+            alt="{{ block.settings.title }}"
+            class="coffee-card__image"
+          >
+        {%- endif -%}
+        
+        <h3 class="coffee-card__title">{{ block.settings.title }}</h3>
+        <p class="coffee-card__description">{{ block.settings.description }}</p>
+        
+        <a href="{{ block.settings.button_link }}"
+           class="coffee-card__button"
+           style="background-color: {{ block.settings.button_color }};">
+          {{ block.settings.button_text }}
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Coffee Products (CUSTOM)",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "coffee_card",
+      "name": "Coffee Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Coffee Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Coffee description goes here"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "ORDER NOW"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_color",
+          "label": "Button Color",
+          "default": "#6366F1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Coffee Products",
+      "blocks": [
+        {
+          "type": "coffee_card"
+        },
+        {
+          "type": "coffee_card"
+        },
+        {
+          "type": "coffee_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

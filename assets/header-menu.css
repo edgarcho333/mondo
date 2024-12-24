@@ -1,0 +1,146 @@
+.menu-header {
+  width: 100%;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.menu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.secondary-nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.main-nav .nav-items {
+  justify-content: flex-start;
+}
+
+.secondary-nav .nav-items {
+  justify-content: flex-end;
+}
+
+/* დანარჩენი სტილები იგივე რჩება */
+.nav-item a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.nav-item a:hover {
+  opacity: 0.8;
+}
+
+.logo-container {
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.header-logo {
+  max-height: 50px;
+  width: auto;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: inherit;
+  min-width: 200px;
+  padding: 10px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 8px 20px;
+}
+
+.dropdown-menu a {
+  white-space: nowrap;
+}
+
+.icon {
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.icon:hover {
+  opacity: 0.8;
+}
+
+.dropdown .icon {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+@media (max-width: 1024px) {
+  .nav-items {
+    gap: 15px;
+  }
+  
+  .nav-item a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-items {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+  
+  .main-nav .nav-items,
+  .secondary-nav .nav-items {
+    justify-content: center;
+  }
+}

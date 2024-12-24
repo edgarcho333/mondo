@@ -1,0 +1,332 @@
+{{ 'product-buy.css' | asset_url | stylesheet_tag }}
+
+<div class="product-buy-section">
+  <div class="product-container">
+    <div class="product-gallery">
+      <div class="main-image">
+        {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+        
+        {% if section.settings.show_sticker %}
+          <div class="sticker" style="background-color: {{ section.settings.sticker_color }}">
+            {{ section.settings.sticker_text }}
+          </div>
+        {% endif %}
+
+        <img
+          id="ProductMainImage"
+          src="{{ featured_media | img_url: '800x' }}"
+          alt="{{ featured_media.alt | escape }}"
+          data-media-id="{{ featured_media.id }}"
+          onclick="openImagePopup(this)"
+        >
+      </div>
+      
+      <div class="thumbnail-container">
+        <button class="scroll-btn prev" onclick="scrollThumbnails('prev')">‹</button>
+        <div class="thumbnail-list">
+          {%- for media in product.media -%}
+            <div class="thumbnail-item{% if featured_media.id == media.id %} active{% endif %}" 
+                 data-media-id="{{ media.id }}"
+                 onclick="updateMainImage(this)">
+              <img
+                src="{{ media.preview_image | img_url: '150x' }}"
+                alt="{{ media.alt | escape }}"
+                loading="lazy"
+              >
+            </div>
+          {%- endfor -%}
+        </div>
+        <button class="scroll-btn next" onclick="scrollThumbnails('next')">›</button>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <!-- Review Stars -->
+      <div class="review-section">
+        <span class="review-label">REVIEWS</span>
+        <span class="rating-number">{{ section.settings.review_rating }}</span>
+        <div class="stars">
+          <div class="stars-filled" style="width: {{ section.settings.stars_count | times: 20 }}%">★★★★★</div>
+          <div class="stars-empty">★★★★★</div>
+        </div>
+        <span class="review-count">{{ product.metafields.reviews.rating_count.value }} Reviews</span>
+      </div>
+
+      <h1 class="product-title">{{ product.title }}</h1>
+      
+      <div class="price-section">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="original-price">{{ product.compare_at_price | money }}</span>
+          <span class="current-price">{{ product.price | money }}</span>
+          <span class="save-badge">
+            SAVE {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%
+          </span>
+        {%- else -%}
+          <span class="current-price">{{ product.price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+
+      {%- if product.variants.first.inventory_quantity < 20 and product.variants.first.inventory_quantity > 0 -%}
+        <div class="low-stock-alert">
+          Only {{ product.variants.first.inventory_quantity }} left in stock!
+        </div>
+      {%- endif -%}
+
+      <div class="purchase-counter">
+        <span class="dot"></span>
+        500+ bought in past week
+      </div>
+
+      {% form 'product', product %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        
+        <div class="purchase-controls">
+          <div class="quantity-selector">
+            <button type="button" class="quantity-btn minus" onclick="updateQuantity(-1)">−</button>
+            <input
+              type="number"
+              name="quantity"
+              id="Quantity"
+              value="1"
+              min="1"
+              readonly
+            >
+            <button type="button" class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+          </div>
+
+          <button
+            type="submit"
+            name="add"
+            class="add-to-cart"
+            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+          >
+            ADD TO CART
+          </button>
+        </div>
+      {% endform %}
+
+      <!-- Benefits Section -->
+      <div class="benefits-section">
+        <div class="benefit-item">
+          <div class="benefit-icon">📦</div>
+          <div class="benefit-text">
+            <h4>Free Shipping</h4>
+            <p>Over $55</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">✨</div>
+          <div class="benefit-text">
+            <h4>Satisfaction</h4>
+            <p>Guarantee</p>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">🌿</div>
+          <div class="benefit-text">
+            <h4>The Finest</h4>
+            <p>Natural Ingredients</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-icons">
+        {% for block in section.blocks %}
+          {% if block.type == 'feature_icon' %}
+            <div class="feature-item">
+              <div class="icon">{{ block.settings.icon }}</div>
+              <div class="feature-text">
+                <strong>{{ block.settings.title }}</strong>
+                <span>{{ block.settings.subtitle }}</span>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Image Popup -->
+<div id="imagePopup" class="image-popup">
+  <div class="popup-content">
+    <span class="close-popup" onclick="closeImagePopup()">&times;</span>
+    <img id="popupImage" src="" alt="">
+  </div>
+</div>
+
+<script>
+  function updateMainImage(thumbnail) {
+    const mainImage = document.getElementById('ProductMainImage');
+    const newSrc = thumbnail.querySelector('img').src.replace('150x', '800x');
+    mainImage.src = newSrc;
+    
+    document.querySelector('.thumbnail-item.active').classList.remove('active');
+    thumbnail.classList.add('active');
+  }
+
+  function updateQuantity(change) {
+    const input = document.getElementById('Quantity');
+    const newValue = parseInt(input.value) + change;
+    if (newValue >= 1) {
+      input.value = newValue;
+    }
+  }
+
+  function scrollThumbnails(direction) {
+    const container = document.querySelector('.thumbnail-list');
+    const scrollAmount = 100;
+    
+    if (direction === 'prev') {
+      container.scrollLeft -= scrollAmount;
+    } else {
+      container.scrollLeft += scrollAmount;
+    }
+  }
+
+  function openImagePopup(imageElement) {
+    const popup = document.getElementById('imagePopup');
+    const popupImage = document.getElementById('popupImage');
+    
+    const originalSrc = imageElement.src;
+    const largeSrc = originalSrc.replace('800x', '1200x');
+    
+    popupImage.src = largeSrc;
+    popup.classList.add('active');
+    
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeImagePopup() {
+    const popup = document.getElementById('imagePopup');
+    popup.classList.remove('active');
+    
+    document.body.style.overflow = 'auto';
+  }
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeImagePopup();
+    }
+  });
+
+  document.getElementById('imagePopup').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeImagePopup();
+    }
+  });
+
+  function addScrollIndicator() {
+    const thumbnailList = document.querySelector('.thumbnail-list');
+    const items = thumbnailList.querySelectorAll('.thumbnail-item');
+    
+    const indicator = document.createElement('div');
+    indicator.className = 'scroll-indicator';
+    
+    items.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = 'scroll-dot' + (index === 0 ? ' active' : '');
+      indicator.appendChild(dot);
+    });
+    
+    document.querySelector('.product-gallery').appendChild(indicator);
+  }
+
+  function updateScrollIndicator() {
+    const thumbnailList = document.querySelector('.thumbnail-list');
+    const dots = document.querySelectorAll('.scroll-dot');
+    
+    const scrollPosition = thumbnailList.scrollLeft;
+    const itemWidth = thumbnailList.offsetWidth;
+    const activeIndex = Math.round(scrollPosition / itemWidth);
+    
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === activeIndex);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    addScrollIndicator();
+    
+    const thumbnailList = document.querySelector('.thumbnail-list');
+    thumbnailList.addEventListener('scroll', updateScrollIndicator);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Product Buy",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_sticker",
+      "label": "Show Sticker",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "sticker_text",
+      "label": "Sticker Text",
+      "default": "#1 MOST LIKED"
+    },
+    {
+      "type": "color",
+      "id": "sticker_color",
+      "label": "Sticker Color",
+      "default": "#e31837"
+    },
+    {
+      "type": "number",
+      "id": "review_rating",
+      "label": "Review Rating",
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "stars_count",
+      "min": 0,
+      "max": 5,
+      "step": 0.1,
+      "label": "Stars Rating",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_icon",
+      "name": "Feature Icon",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (emoji or text)",
+          "default": "✓"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "Feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Buy"
+    }
+  ]
+}
+{% endschema %}

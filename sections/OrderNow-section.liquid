@@ -1,0 +1,80 @@
+{{ 'OrderNow-section.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "OrderNow-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Our Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "product_image",
+          "label": "Product Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Product Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Order Now Section",
+      "blocks": [
+        {
+          "type": "product_card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="order-now-section">
+  <div class="order-now-grid">
+    {% for block in section.blocks %}
+      <div class="product-card">
+        {% if block.settings.product_image %}
+          {{ block.settings.product_image | image_url: width: 400 | image_tag: 
+             class: 'product-image',
+             loading: 'lazy',
+             alt: block.settings.title
+          }}
+        {% endif %}
+        
+        <div class="product-content">
+          <h3 class="product-title">{{ block.settings.title }}</h3>
+          <p class="product-description">{{ block.settings.description }}</p>
+          {% if block.settings.button_link %}
+            <a href="{{ block.settings.button_link }}" class="order-button">
+              ORDER NOW
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

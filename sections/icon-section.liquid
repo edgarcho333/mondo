@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="{{ 'icon-section.css' | asset_url }}">
+
+<div class="icon-section">
+  <div class="icon-section__container">
+    {% for block in section.blocks %}
+      <div class="icon-section__item">
+        {% if block.settings.icon != blank %}
+          <img 
+            src="{{ block.settings.icon | img_url: '120x' }}"
+            alt="{{ block.settings.title }}"
+            class="icon-section__icon"
+            loading="lazy"
+            width="60"
+            height="60"
+          >
+        {% endif %}
+        {% if block.settings.title != blank %}
+          <h3 class="icon-section__title">{{ block.settings.title }}</h3>
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <p class="icon-section__text">{{ block.settings.text }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Icon Section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "icon",
+      "name": "Icon Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature Title"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Feature description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Section",
+      "blocks": [
+        {
+          "type": "icon"
+        },
+        {
+          "type": "icon"
+        },
+        {
+          "type": "icon"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

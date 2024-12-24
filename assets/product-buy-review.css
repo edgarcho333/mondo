@@ -1,0 +1,131 @@
+.reviews-section {
+  margin: 40px 40px;
+  margin-left: 160px;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.reviews-header {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.overall-rating {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.rating-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 20px;
+}
+
+.star.filled {
+  color: #f8b84e;
+}
+
+.total-reviews {
+  color: #666;
+  font-size: 14px;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.review-item {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.reviewer-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviewer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.verified-badge {
+  font-size: 12px;
+  color: #28a745;
+}
+
+.review-date {
+  margin-left: auto;
+  color: #666;
+  font-size: 14px;
+}
+
+.rating {
+  margin-bottom: 10px;
+}
+
+.review-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.review-text {
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.purchase-counter {
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}

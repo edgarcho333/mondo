@@ -1,0 +1,166 @@
+<!-- sections/partner-carousel.liquid -->
+
+<div class="partner-carousel-section">
+  <div class="page-width">
+    <div class="partner-carousel-wrapper">
+      <div class="partner-carousel" id="partnerCarousel">
+        <div class="partner-track">
+          {%- for block in section.blocks -%}
+            <div class="partner-slide" {{ block.shopify_attributes }}>
+              {%- if block.settings.partner_link != blank -%}
+                <a href="{{ block.settings.partner_link }}">
+              {%- endif -%}
+              
+              {%- if block.settings.partner_logo != blank -%}
+                <img
+                  src="{{ block.settings.partner_logo | img_url: '200x' }}"
+                  alt="{{ block.settings.partner_name }}"
+                  loading="lazy"
+                  width="auto"
+                  height="60"
+                >
+              {%- endif -%}
+              
+              {%- if block.settings.partner_link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.partner-carousel-section {
+  padding: 40px 0;
+  background: #ffffff;
+}
+
+.partner-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.partner-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.partner-track {
+  display: flex;
+  animation: scroll 30s linear infinite;
+  width: fit-content;
+}
+
+.partner-slide {
+  flex: 0 0 auto;
+  padding: 0 20px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+  min-width: 180px;
+}
+
+.partner-slide:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+.partner-slide img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-track:hover {
+  animation-play-state: paused;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.partner-track');
+  const slides = document.querySelectorAll('.partner-slide');
+  
+  // Clone slides
+  slides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+    track.appendChild(clone);
+  });
+  
+  // Calculate total width and adjust animation
+  function updateAnimation() {
+    const trackWidth = track.offsetWidth;
+    const slideWidth = slides[0].offsetWidth;
+    const totalSlides = slides.length;
+    const duration = (trackWidth / 100) * 2; // Adjust speed based on width
+    
+    track.style.animation = `scroll ${duration}s linear infinite`;
+  }
+  
+  // Update on load and resize
+  updateAnimation();
+  window.addEventListener('resize', updateAnimation);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Partner Carousel",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "partner",
+      "name": "Partner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "partner_logo",
+          "label": "Partner Logo"
+        },
+        {
+          "type": "text",
+          "id": "partner_name",
+          "label": "Partner Name"
+        },
+        {
+          "type": "url",
+          "id": "partner_link",
+          "label": "Partner Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Partner Carousel",
+      "blocks": [
+        {
+          "type": "partner"
+        },
+        {
+          "type": "partner"
+        },
+        {
+          "type": "partner"
+        },
+        {
+          "type": "partner"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,146 @@
+{{ 'video-gallery-CUSTOM.css' | asset_url | stylesheet_tag }}
+
+<div class="video-gallery-section">
+  <h2 class="video-gallery__title">{{ section.settings.title }}</h2>
+  
+  <div class="video-gallery__grid">
+    {%- for block in section.blocks -%}
+      <div class="video-item" {{ block.shopify_attributes }}>
+        <div class="video-wrapper" onclick="openModal('modal-{{ block.id }}')">
+          {%- if block.settings.video_url contains 'youtube.com' or block.settings.video_url contains 'youtu.be' -%}
+            <iframe
+              src="{{ block.settings.video_url | split: '=' | last | prepend: 'https://www.youtube.com/embed/' }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url | split: '=' | last }}&controls=0"
+              class="video-player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          {%- else -%}
+            <video 
+              src="{{ block.settings.video_url }}"
+              class="video-player"
+              autoplay
+              loop
+              muted
+              playsinline
+              defaultMuted
+            ></video>
+          {%- endif -%}
+        </div>
+        {%- if block.settings.video_title != blank -%}
+          <p class="video-item__title">{{ block.settings.video_title }}</p>
+        {%- endif -%}
+      </div>
+
+      <!-- Modal for each video -->
+      <div id="modal-{{ block.id }}" class="video-modal">
+        <div class="modal-content">
+          <span class="close-modal" onclick="closeModal('modal-{{ block.id }}')">&times;</span>
+          {%- if block.settings.video_url contains 'youtube.com' or block.settings.video_url contains 'youtu.be' -%}
+            <iframe
+              src="{{ block.settings.video_url | split: '=' | last | prepend: 'https://www.youtube.com/embed/' }}?autoplay=1&controls=1"
+              class="modal-video-player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          {%- else -%}
+            <video 
+              src="{{ block.settings.video_url }}"
+              class="modal-video-player"
+              controls
+              autoplay
+            ></video>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+  function openModal(modalId) {
+    document.getElementById(modalId).style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  // Close modal when clicking outside of content
+  window.onclick = function(event) {
+    if (event.target.classList.contains('video-modal')) {
+      event.target.style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+  }
+
+  // Close modal with ESC key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+      const modals = document.getElementsByClassName('video-modal');
+      for (let modal of modals) {
+        if (modal.style.display === "flex") {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      }
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Gallery (CUSTOM)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Watch More About Mondo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video URL",
+          "accept": ["youtube", "vimeo"]
+        },
+        {
+          "type": "text",
+          "id": "video_title",
+          "label": "Video Title",
+          "default": "Video Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Gallery",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}

@@ -1,0 +1,468 @@
+{{ 'product-grid-CUSTOM.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4,
+      "label": "Number of products to show"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title",
+      "default": "Choose Your Taste"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 16,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Title Size",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Product 1 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Product Image 1"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "Background Color 1",
+      "default": "#FFF5F5"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Product Title 1",
+      "default": "Drip Coffee Mix"
+    },
+    {
+      "type": "text",
+      "id": "price_regular_1",
+      "label": "Regular Price 1",
+      "default": "$34.49"
+    },
+    {
+      "type": "text",
+      "id": "price_sale_1",
+      "label": "Sale Price 1",
+      "default": "$13.99"
+    },
+    {
+      "type": "text",
+      "id": "button_text_1",
+      "label": "Button Text 1",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "text",
+      "id": "button_link_1",
+      "label": "Button Link 1",
+      "default": "#"
+    },
+    {
+      "type": "color",
+      "id": "button_color_1",
+      "label": "Button Text Color 1",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_1",
+      "label": "Button Background 1",
+      "default": "#E5A1B7"
+    },
+    {
+      "type": "header",
+      "content": "Product 2 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Product Image 2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "Background Color 2",
+      "default": "#FFF5F5"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Product Title 2",
+      "default": "Single Serve Coffee Bags"
+    },
+    {
+      "type": "text",
+      "id": "price_2",
+      "label": "Price 2",
+      "default": "$22.99"
+    },
+    {
+      "type": "text",
+      "id": "button_text_2",
+      "label": "Button Text 2",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "text",
+      "id": "button_link_2",
+      "label": "Button Link 2",
+      "default": "#"
+    },
+    {
+      "type": "color",
+      "id": "button_color_2",
+      "label": "Button Text Color 2",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_2",
+      "label": "Button Background 2",
+      "default": "#E5A1B7"
+    },
+    {
+      "type": "header",
+      "content": "Product 3 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Product Image 3"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_3",
+      "label": "Background Color 3",
+      "default": "#FFF5F5"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Product Title 3",
+      "default": "Drip Coffee Mix"
+    },
+    {
+      "type": "text",
+      "id": "price_regular_3",
+      "label": "Regular Price 3",
+      "default": "$34.49"
+    },
+    {
+      "type": "text",
+      "id": "price_sale_3",
+      "label": "Sale Price 3",
+      "default": "$13.99"
+    },
+    {
+      "type": "text",
+      "id": "button_text_3",
+      "label": "Button Text 3",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "text",
+      "id": "button_link_3",
+      "label": "Button Link 3",
+      "default": "#"
+    },
+    {
+      "type": "color",
+      "id": "button_color_3",
+      "label": "Button Text Color 3",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_3",
+      "label": "Button Background 3",
+      "default": "#E5A1B7"
+    },
+    {
+      "type": "header",
+      "content": "Product 4 Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Product Image 4"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_4",
+      "label": "Background Color 4",
+      "default": "#FFF5F5"
+    },
+    {
+      "type": "text",
+      "id": "title_4",
+      "label": "Product Title 4",
+      "default": "Drip Coffee Mix"
+    },
+    {
+      "type": "text",
+      "id": "price_regular_4",
+      "label": "Regular Price 4",
+      "default": "$34.49"
+    },
+    {
+      "type": "text",
+      "id": "price_sale_4",
+      "label": "Sale Price 4",
+      "default": "$13.99"
+    },
+    {
+      "type": "text",
+      "id": "button_text_4",
+      "label": "Button Text 4",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "text",
+      "id": "button_link_4",
+      "label": "Button Link 4",
+      "default": "#"
+    },
+    {
+      "type": "color",
+      "id": "button_color_4",
+      "label": "Button Text Color 4",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_4",
+      "label": "Button Background 4",
+      "default": "#E5A1B7"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid (CUSTOM)",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.product-grid-section {
+  padding: 40px 20px;
+  margin: 0 auto;
+}
+.section-title {
+  text-align: left;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.product-card {
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.product-image {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.product-info {
+  width: 100%;
+}
+.product-info h3 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.price {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+}
+.price-compare {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+.price-sale,
+.price-regular {
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+}
+.product-grid-section .button {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  background-color: #E5A1B7;
+  color: white;
+  margin-top: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.product-grid-section .button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+.product-grid-section .price {
+  margin-bottom: 5px;
+}
+.product-grid-section .price-sale {
+  color: #E5A1B7;
+  font-weight: bold;
+}
+.product-grid-section .price-compare {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 8px;
+}
+@media screen and (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 640px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-card {
+    padding: 15px;
+  }
+}
+</style>
+
+<div class="product-grid-section">
+  <h2 class="section-title" style="font-size: {{ section.settings.title_size }}px">
+    {{ section.settings.section_title }}
+  </h2>
+  
+  <div class="product-grid">
+    {% if section.settings.collection != blank %}
+      {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+      {% for product in products %}
+        <div class="product-card" style="background-color: {{ section.settings.bg_color_1 }}">
+          <div class="product-image">
+            {{ product.featured_image | image_url: width: 300 | image_tag }}
+          </div>
+          <div class="product-info">
+            <h3>{{ product.title }}</h3>
+            <div class="price">
+  {% if product.compare_at_price_max > product.price %}
+    <span class="price-compare">{{ product.compare_at_price_max | money }}</span>
+    <span class="price-sale">{{ product.price | money }}</span>
+  {% else %}
+    <span class="price-regular">{{ product.price | money }}</span>
+  {% endif %}
+</div>
+           <button 
+  class="button add-to-cart-button"
+  style="color: {{ section.settings.button_color_1 }}; background-color: {{ section.settings.button_bg_1 }}"
+  data-variant-id="{{ product.variants.first.id }}"
+  {% unless product.available %}disabled{% endunless %}
+>
+  {% if product.available %}
+    ADD TO CART
+  {% else %}
+    SOLD OUT
+  {% endif %}
+</button>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Please select a collection</p>
+    {% endif %}
+  </div>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+  
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const variantId = this.dataset.variantId;
+      
+      // თუ ღილაკი disabled არაა
+      if (!this.disabled) {
+        // ღილაკის loading სტეიტი
+        this.innerHTML = 'Adding...';
+        this.disabled = true;
+        
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            items: [{
+              id: variantId,
+              quantity: 1
+            }]
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          // პროდუქტის წარმატებით დამატების შემდეგ
+          window.location.href = '/cart';
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          this.innerHTML = 'Error';
+          setTimeout(() => {
+            this.innerHTML = 'ADD TO CART';
+            this.disabled = false;
+          }, 1000);
+        });
+      }
+    });
+  });
+});
+</script>
+</div>

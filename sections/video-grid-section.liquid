@@ -1,0 +1,195 @@
+{{ 'video-video-grid-section.css' | asset_url | stylesheet_tag }}
+
+<div class="video-grid-section">
+  <div class="video-grid-container">
+    <!-- ვიდეო 1 -->
+    <div class="video-card" style="background-color: {{ section.settings.bg_color_1 }}">
+      <div class="video-thumbnail">
+        {% if section.settings.video_thumbnail_1 != blank %}
+          {{ section.settings.video_thumbnail_1 | image_url: width: 400 | image_tag }}
+        {% endif %}
+        <div class="play-button" style="background-color: {{ section.settings.play_button_bg_1 }}">
+          <span class="play-icon" style="color: {{ section.settings.play_button_color_1 }}">▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ვიდეო 2 -->
+    <div class="video-card" style="background-color: {{ section.settings.bg_color_2 }}">
+      <div class="video-thumbnail">
+        {% if section.settings.video_thumbnail_2 != blank %}
+          {{ section.settings.video_thumbnail_2 | image_url: width: 400 | image_tag }}
+        {% endif %}
+        <div class="play-button" style="background-color: {{ section.settings.play_button_bg_2 }}">
+          <span class="play-icon" style="color: {{ section.settings.play_button_color_2 }}">▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ვიდეო 3 -->
+    <div class="video-card" style="background-color: {{ section.settings.bg_color_3 }}">
+      <div class="video-thumbnail">
+        {% if section.settings.video_thumbnail_3 != blank %}
+          {{ section.settings.video_thumbnail_3 | image_url: width: 400 | image_tag }}
+        {% endif %}
+        <div class="play-button" style="background-color: {{ section.settings.play_button_bg_3 }}">
+          <span class="play-icon" style="color: {{ section.settings.play_button_color_3 }}">▶</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ვიდეო 4 -->
+    <div class="video-card" style="background-color: {{ section.settings.bg_color_4 }}">
+      <div class="video-thumbnail">
+        {% if section.settings.video_thumbnail_4 != blank %}
+          {{ section.settings.video_thumbnail_4 | image_url: width: 400 | image_tag }}
+        {% endif %}
+        <div class="play-button" style="background-color: {{ section.settings.play_button_bg_4 }}">
+          <span class="play-icon" style="color: {{ section.settings.play_button_color_4 }}">▶</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "video-grid-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "ვიდეო 1 პარამეტრები"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail_1",
+      "label": "ვიდეოს თამბნეილი 1"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_1",
+      "label": "ფონის ფერი 1",
+      "default": "#F3D03E"
+    },
+    {
+      "type": "color",
+      "id": "play_button_bg_1",
+      "label": "Play ღილაკის ფონი 1",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "play_button_color_1",
+      "label": "Play ღილაკის ფერი 1",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "video_url_1",
+      "label": "ვიდეოს ლინკი 1"
+    },
+    {
+      "type": "header",
+      "content": "ვიდეო 2 პარამეტრები"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail_2",
+      "label": "ვიდეოს თამბნეილი 2"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_2",
+      "label": "ფონის ფერი 2",
+      "default": "#E67A68"
+    },
+    {
+      "type": "color",
+      "id": "play_button_bg_2",
+      "label": "Play ღილაკის ფონი 2",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "play_button_color_2",
+      "label": "Play ღილაკის ფერი 2",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "video_url_2",
+      "label": "ვიდეოს ლინკი 2"
+    },
+    {
+      "type": "header",
+      "content": "ვიდეო 3 პარამეტრები"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail_3",
+      "label": "ვიდეოს თამბნეილი 3"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_3",
+      "label": "ფონის ფერი 3",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "play_button_bg_3",
+      "label": "Play ღილაკის ფონი 3",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "play_button_color_3",
+      "label": "Play ღილაკის ფერი 3",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "video_url_3",
+      "label": "ვიდეოს ლინკი 3"
+    },
+    {
+      "type": "header",
+      "content": "ვიდეო 4 პარამეტრები"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_thumbnail_4",
+      "label": "ვიდეოს თამბნეილი 4"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_4",
+      "label": "ფონის ფერი 4",
+      "default": "#2B5CE6"
+    },
+    {
+      "type": "color",
+      "id": "play_button_bg_4",
+      "label": "Play ღილაკის ფონი 4",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "play_button_color_4",
+      "label": "Play ღილაკის ფერი 4",
+      "default": "#000000"
+    },
+    {
+      "type": "url",
+      "id": "video_url_4",
+      "label": "ვიდეოს ლინკი 4"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ვიდეო გრიდი",
+      "category": "ვიდეო სექციები"
+    }
+  ]
+}
+{% endschema %}

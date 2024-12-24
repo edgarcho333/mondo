@@ -1,0 +1,85 @@
+{{ 'comments-section.css' | asset_url | stylesheet_tag }}
+
+<div class="testimonials-section">
+  <div class="testimonials-grid">
+    {%- for block in section.blocks -%}
+      <div class="testimonial-card" {{ block.shopify_attributes }}>
+        <div class="testimonial-card__rating">
+          {%- for i in (1..block.settings.rating) -%}
+            <span class="star">★</span>
+          {%- endfor -%}
+        </div>
+        
+        <h3 class="testimonial-card__heading">{{ block.settings.heading }}</h3>
+        <p class="testimonial-card__content">{{ block.settings.content }}</p>
+        <p class="testimonial-card__author">{{ block.settings.author }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials Grid",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Say"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Star Rating",
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Testimonial Heading",
+          "default": "COFFEE MADE EASY"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Testimonial Content",
+          "default": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "ANNA D."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Grid",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

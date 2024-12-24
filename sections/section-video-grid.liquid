@@ -1,0 +1,67 @@
+{{ 'video-grid-section.css' | asset_url | stylesheet_tag }}
+
+<div class="video-grid-section">
+  <h2 class="video-grid-title">{{ section.settings.title }}</h2>
+  <div class="video-grid-container">
+    {% for block in section.blocks %}
+      <div class="video-item">
+        <div class="video-thumbnail">
+          <div class="play-button">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "section-video-grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "სათაური",
+      "default": "Watch More About Mondo"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "ვიდეო",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "video_thumbnail",
+          "label": "ვიდეოს თამბნეილი"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "ვიდეოს ლინკი"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "ვიდეო გრიდი",
+      "blocks": [
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        },
+        {
+          "type": "video"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

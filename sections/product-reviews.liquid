@@ -1,0 +1,93 @@
+{% schema %}
+{
+  "name": "Product Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "average_rating",
+      "label": "Average Rating",
+      "default": "4.7"
+    },
+    {
+      "type": "number",
+      "id": "total_reviews",
+      "label": "Total Reviews",
+      "default": 270
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer Name",
+          "default": "Melissa J."
+        },
+        {
+          "type": "text",
+          "id": "review_date",
+          "label": "Review Date",
+          "default": "11/19/24"
+        },
+        {
+          "type": "text",
+          "id": "review_title",
+          "label": "Review Title",
+          "default": "Love the soaps!"
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "They are strong enough to get engine grease off but gentle enough to make your skin soft. All the ones we've used so far work awesome and smell fantastic!!! Our mailbox still smells good from the delivery."
+        },
+        {
+          "type": "radio",
+          "id": "review_stars",
+          "label": "Review Stars",
+          "default": "★★★★★",
+          "options": [
+            { "value": "★★★★★", "label": "5 Stars" },
+            { "value": "★★★★☆", "label": "4 Stars" },
+            { "value": "★★★☆☆", "label": "3 Stars" },
+            { "value": "★★☆☆☆", "label": "2 Stars" },
+            { "value": "★☆☆☆☆", "label": "1 Star" }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Reviews",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="reviews-section">
+  <div class="reviews-header">
+    <h2>Reviews</h2>
+    <div class="average-rating">
+      <span class="rating-score">{{ section.settings.average_rating }}</span>
+      <span class="total-reviews">{{ section.settings.total_reviews }} Reviews</span>
+    </div>
+  </div>
+  <div class="reviews-list">
+    {% for block in section.blocks %}
+      <div class="review">
+        <div class="review-header">
+          <strong class="reviewer-name">{{ block.settings.reviewer_name }}</strong>
+          <span class="review-date">{{ block.settings.review_date }}</span>
+        </div>
+        <div class="review-stars">{{ block.settings.review_stars }}</div>
+        <p class="review-title">{{ block.settings.review_title }}</p>
+        <p class="review-text">{{ block.settings.review_text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</section>

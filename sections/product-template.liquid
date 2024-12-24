@@ -1,0 +1,410 @@
+
+
+{{ 'product-template.css' | asset_url | stylesheet_tag }}
+
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<div class="product-container" data-product-id="{{ product.id }}">
+  {%- comment -%} Product Gallery {%- endcomment -%}
+  <div class="product-gallery">
+    <!-- thumbnails -->
+    <div class="thumbnails-column">
+      {% for image in product.images %}
+        <div class="thumbnail-item{% if forloop.first %} active{% endif %}" 
+             onclick="switchMainImage(this, '{{ image | img_url: '800x' }}')">
+          <img src="{{ image | img_url: '100x100', crop: 'center' }}" 
+               alt="{{ image.alt | escape }}"
+               loading="lazy">
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- main image -->
+    <div class="main-image">
+      <img id="ProductMainImage" 
+           src="{{ featured_image | img_url: '800x' }}" 
+           alt="{{ featured_image.alt | escape }}">
+    </div>
+  </div>
+
+  <div class="product-info">
+    {%- comment -%} Title {%- endcomment -%}
+    <h1 class="product-title">{{ product.title }}</h1>
+    
+    {%- comment -%} Reviews {%- endcomment -%}
+    {% if section.settings.show_reviews %}
+      <div class="product-rating">
+        <div class="stars">
+          {% assign rating = product.metafields.reviews.rating.value | default: section.settings.default_rating %}
+          {% for i in (1..5) %}
+            <span class="star{% if i <= rating %} filled{% endif %}">★</span>
+          {% endfor %}
+        </div>
+        <span class="review-count">({{ product.metafields.reviews.rating_count.value | default: section.settings.default_review_count }})</span>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Price {%- endcomment -%}
+    <div class="product-price">
+      <span class="current-price">
+        {{ current_variant.price | money }}
+      </span>
+      {% if current_variant.compare_at_price > current_variant.price %}
+        <span class="compare-price">
+          {{ current_variant.compare_at_price | money }}
+        </span>
+        {% if section.settings.show_sale_badge %}
+          <span class="sale-tag">{{ section.settings.sale_badge_text }}</span>
+        {% endif %}
+      {% endif %}
+    </div>
+
+    {%- comment -%} Sale Timer {%- endcomment -%}
+    {% if section.settings.show_sale_timer and current_variant.compare_at_price > current_variant.price %}
+      <div class="sale-timer">
+        <p>{{ section.settings.sale_timer_text }}</p>
+        <div class="countdown-timer">
+          <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+        </div>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Inventory Status {%- endcomment -%}
+    {% if section.settings.show_inventory_quantity and current_variant.inventory_quantity <= section.settings.low_inventory_threshold %}
+      <div class="low-stock">
+        {{ section.settings.low_inventory_message | replace: '[quantity]', current_variant.inventory_quantity }}
+      </div>
+    {% endif %}
+
+    {%- comment -%} Add to Cart Form {%- endcomment -%}
+    {% form 'product', product, class: "product-form", id: "AddToCartForm" %}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      
+      <div class="quantity-wrapper">
+        <label>{{ section.settings.quantity_label }}</label>
+        <div class="quantity-controls">
+          <button type="button" class="qty-btn minus" data-action="decrease">−</button>
+          <input type="number" 
+                 name="quantity" 
+                 id="Quantity" 
+                 value="1" 
+                 min="1"
+                 class="quantity-input"
+                 data-quantity-input>
+          <button type="button" class="qty-btn plus" data-action="increase">+</button>
+        </div>
+      </div>
+
+      <button type="submit" 
+              name="add" 
+              id="AddToCart"
+              class="add-to-cart-button{% unless current_variant.available %} sold-out{% endunless %}"
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+        {% if current_variant.available %}
+          {{ section.settings.add_to_cart_text }}
+        {% else %}
+          {{ section.settings.sold_out_text }}
+        {% endif %}
+      </button>
+    {% endform %}
+
+    {%- comment -%} Product Actions {%- endcomment -%}
+    {% if section.settings.show_product_actions %}
+      <div class="product-actions">
+        {% if section.settings.show_ask_question %}
+          <button class="action-button" onclick="openQuestionModal()">
+            Ask a question
+          </button>
+        {% endif %}
+        {% if section.settings.show_share %}
+          <button class="action-button share-button" onclick="shareProduct()">
+            Share
+          </button>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {%- comment -%} Delivery Info {%- endcomment -%}
+    {% if section.settings.show_delivery_info %}
+      <div class="delivery-info">
+        {% assign delivery_date = 'now' | date: '%s' | plus: section.settings.delivery_days | date: '%b %d' %}
+        <p>
+          Estimated Delivery: {{ delivery_date }}
+        </p>
+        <p>
+          {{ section.settings.shipping_message }}
+        </p>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Payment Methods {%- endcomment -%}
+    {% if section.settings.show_payment_methods %}
+      <div class="payment-methods">
+        <p>{{ section.settings.payment_methods_text }}</p>
+        <div class="payment-icons">
+          {% for type in shop.enabled_payment_types %}
+            <img src="{{ type | payment_type_img_url }}" 
+                 alt="{{ type | capitalize }} payment type">
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{%- comment -%} Product Description Tabs {%- endcomment -%}
+{% if section.settings.show_product_tabs %}
+  <div class="product-description">
+    <div class="description-tabs">
+      <button class="tab-button active" data-tab="details">{{ section.settings.details_tab_text }}</button>
+      <button class="tab-button" data-tab="more">{{ section.settings.more_tab_text }}</button>
+    </div>
+
+    <div class="tab-content" id="details-content">
+      {{ product.description }}
+    </div>
+    
+    <div class="tab-content hidden" id="more-content">
+      {{ product.metafields.additional_info.content }}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Template",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Reviews"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reviews",
+      "label": "Show product reviews",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "default_rating",
+      "label": "Default rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "number",
+      "id": "default_review_count",
+      "label": "Default review count",
+      "default": 439
+    },
+    {
+      "type": "header",
+      "content": "Sale Badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_badge",
+      "label": "Show sale badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sale_badge_text",
+      "label": "Sale badge text",
+      "default": "SALE"
+    },
+    {
+      "type": "header",
+      "content": "Sale Timer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sale_timer",
+      "label": "Show sale timer",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "sale_timer_text",
+      "label": "Sale timer text",
+      "default": "Hurry up! Sale ends in:"
+    },
+    {
+      "type": "header",
+      "content": "Inventory"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_inventory_quantity",
+      "label": "Show low inventory warning",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "low_inventory_threshold",
+      "label": "Low inventory threshold",
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "low_inventory_message",
+      "label": "Low inventory message",
+      "default": "Only [quantity] left in stock!"
+    },
+    {
+      "type": "header",
+      "content": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "quantity_label",
+      "label": "Quantity label",
+      "default": "Quantity"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_text",
+      "label": "Add to cart button text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Sold out text",
+      "default": "Sold Out"
+    },
+    {
+      "type": "header",
+      "content": "Product Actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_actions",
+      "label": "Show product actions",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ask_question",
+      "label": "Show ask question button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share",
+      "label": "Show share button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Delivery Information"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_delivery_info",
+      "label": "Show delivery information",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "delivery_days",
+      "label": "Delivery days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 14
+    },
+    {
+      "type": "text",
+      "id": "shipping_message",
+      "label": "Shipping message",
+      "default": "Free Shipping & Returns: On all orders over $45"
+    },
+    {
+      "type": "header",
+      "content": "Payment Methods"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_methods",
+      "label": "Show payment methods",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "payment_methods_text",
+      "label": "Payment methods text",
+      "default": "Guarantee Safe & Secure Checkout"
+    },
+    {
+      "type": "header",
+      "content": "Product Tabs"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_tabs",
+      "label": "Show product description tabs",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "details_tab_text",
+      "label": "Details tab text",
+      "default": "Details"
+    },
+    {
+      "type": "text",
+      "id": "more_tab_text",
+      "label": "Read more tab text",
+      "default": "Read More"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+// Image Gallery
+function switchMainImage(thumbnail, imageUrl) {
+  document.querySelectorAll('.thumbnail-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  thumbnail.classList.add('active');
+  document.getElementById('ProductMainImage').src = imageUrl;
+}
+
+// Quantity Controls
+document.querySelectorAll('.qty-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    const input = document.querySelector('[data-quantity-input]');
+    const currentValue = parseInt(input.value);
+    
+    if (this.dataset.action === 'increase') {
+      input.value = currentValue + 1;
+    } else if (this.dataset.action === 'decrease' && currentValue > 1) {
+      input.value = currentValue - 1;
+    }
+  });
+});
+
+// Tab Switching
+document.querySelectorAll('.tab-button').forEach(button => {
+  button.addEventListener('click', function() {
+    // Remove active class from all tabs
+    document.querySelectorAll('.tab-button').forEach(tab => {
+      tab.classList.remove('active');
+    });
+    // Hide all content
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.add('hidden');
+    });
+    
+    // Add active class to clicked tab
+    this.classList.add('active');
+    // Show corresponding content
+    document.getElementById(`${this.dataset.tab}-content`).classList.remove('hidden');
+  });
+});
+{% endjavascript %}

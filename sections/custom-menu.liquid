@@ -1,0 +1,61 @@
+{%- assign logo_alt = settings.logo_alt | default: shop.name | escape -%}
+
+{{ 'custom-menu.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-menu-wrapper">
+  <nav class="custom-menu">
+    <!-- Left Menu Items -->
+    <div class="menu-left">
+      <ul class="menu-items">
+        <li><a href="/collections/single-serve">SINGLE SERVE COFFEE</a></li>
+        <li><a href="/collections/coffee-bean">COFFEE BEAN</a></li>
+        <li><a href="/pages/gift-card">GIFT CARD</a></li>
+      </ul>
+    </div>
+
+    <!-- Center Logo -->
+    <div class="menu-center">
+      <a href="/" class="logo-link">
+        {%- if settings.logo != blank -%}
+          <img 
+            src="{{ settings.logo | img_url: 'master' }}"
+            alt="{{ logo_alt }}"
+            class="custom-logo"
+            loading="lazy"
+            width="auto"
+            height="auto">
+        {%- else -%}
+          {{ shop.name }}
+        {%- endif -%}
+      </a>
+    </div>
+
+    <!-- Right Menu Items -->
+    <div class="menu-right">
+      <ul class="menu-items">
+        <li><a href="/pages/store-locator">STORE LOCATOR</a></li>
+        <li class="more-dropdown">
+          <a href="#">MORE</a>
+          <div class="dropdown-content">
+            <!-- Add dropdown items in theme settings -->
+            {%- for link in linklists.more-menu.links -%}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {%- endfor -%}
+          </div>
+        </li>
+      </ul>
+      <div class="menu-icons">
+        <button type="button" class="search-toggle">
+          <span class="icon">{% render 'icon-search' %}</span>
+        </button>
+        <a href="/account" class="account-link">
+          <span class="icon">{% render 'icon-account' %}</span>
+        </a>
+        <a href="/cart" class="cart-link">
+          <span class="icon">{% render 'icon-cart' %}</span>
+          <span class="cart-count">{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</div>

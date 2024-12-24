@@ -1,0 +1,307 @@
+{{ 'main-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-nav">
+            <div class="logo-section footer-item">
+                {% if section.settings.footer_logo != blank %}
+                    {% if section.settings.logo_link != blank %}
+                        <a href="{{ section.settings.logo_link }}">
+                    {% endif %}
+                    
+                    {%- assign logo_alt = section.settings.footer_logo.alt | default: shop.name | escape -%}
+                    {{ section.settings.footer_logo | image_url: width: 200 | image_tag:
+                        class: 'logo',
+                        alt: logo_alt,
+                        width: section.settings.footer_logo.width,
+                        height: section.settings.footer_logo.height
+                    }}
+                    
+                    {% if section.settings.logo_link != blank %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            
+            <!-- First Column -->
+            <div class="nav-column footer-item">
+                <a href="{{ section.settings.amazon_link }}" class="nav-link">
+                    {% if section.settings.amazon_icon != blank %}
+                        {{ section.settings.amazon_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.amazon_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.amazon_text }}
+                </a>
+                <a href="{{ section.settings.privacy_link }}" class="nav-link">
+                    {% if section.settings.privacy_icon != blank %}
+                        {{ section.settings.privacy_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.privacy_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.privacy_text }}
+                </a>
+            </div>
+            
+            <!-- Second Column -->
+            <div class="nav-column footer-item">
+                <a href="{{ section.settings.about_link }}" class="nav-link">
+                    {% if section.settings.about_icon != blank %}
+                        {{ section.settings.about_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.about_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.about_text }}
+                </a>
+                <a href="{{ section.settings.refund_link }}" class="nav-link">
+                    {% if section.settings.refund_icon != blank %}
+                        {{ section.settings.refund_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.refund_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.refund_text }}
+                </a>
+            </div>
+            
+            <!-- Third Column -->
+            <div class="nav-column footer-item">
+                <a href="{{ section.settings.store_locator_link }}" class="nav-link">
+                    {% if section.settings.store_locator_icon != blank %}
+                        {{ section.settings.store_locator_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.store_locator_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.store_locator_text }}
+                </a>
+                <a href="{{ section.settings.shipping_link }}" class="nav-link">
+                    {% if section.settings.shipping_icon != blank %}
+                        {{ section.settings.shipping_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.shipping_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.shipping_text }}
+                </a>
+            </div>
+            
+            <!-- Fourth Column -->
+            <div class="nav-column footer-item">
+                <a href="{{ section.settings.contact_link }}" class="nav-link">
+                    {% if section.settings.contact_icon != blank %}
+                        {{ section.settings.contact_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.contact_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.contact_text }}
+                </a>
+                <a href="{{ section.settings.terms_link }}" class="nav-link">
+                    {% if section.settings.terms_icon != blank %}
+                        {{ section.settings.terms_icon | image_url: width: 20 | image_tag:
+                            class: 'nav-icon',
+                            alt: section.settings.terms_text
+                        }}
+                    {% endif %}
+                    {{ section.settings.terms_text }}
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-divider"></div>
+        
+        {% if section.settings.show_payment_icons %}
+            <div class="payment-methods">
+                {% for type in shop.enabled_payment_types %}
+                    {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</footer>
+
+{% schema %}
+{
+    "name": "Main Footer",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Logo Settings"
+        },
+        {
+            "type": "image_picker",
+            "id": "footer_logo",
+            "label": "Footer Logo"
+        },
+        {
+            "type": "url",
+            "id": "logo_link",
+            "label": "Logo Link URL"
+        },
+        {
+            "type": "header",
+            "content": "First Column"
+        },
+        {
+            "type": "image_picker",
+            "id": "amazon_icon",
+            "label": "Amazon Icon"
+        },
+        {
+            "type": "text",
+            "id": "amazon_text",
+            "label": "Amazon Link Text",
+            "default": "Shop On Amazon"
+        },
+        {
+            "type": "url",
+            "id": "amazon_link",
+            "label": "Amazon Link URL"
+        },
+        {
+            "type": "image_picker",
+            "id": "privacy_icon",
+            "label": "Privacy Icon"
+        },
+        {
+            "type": "text",
+            "id": "privacy_text",
+            "label": "Privacy Policy Text",
+            "default": "Privacy Policy"
+        },
+        {
+            "type": "url",
+            "id": "privacy_link",
+            "label": "Privacy Policy URL"
+        },
+        {
+            "type": "header",
+            "content": "Second Column"
+        },
+        {
+            "type": "image_picker",
+            "id": "about_icon",
+            "label": "About Icon"
+        },
+        {
+            "type": "text",
+            "id": "about_text",
+            "label": "About Link Text",
+            "default": "About Mondo"
+        },
+        {
+            "type": "url",
+            "id": "about_link",
+            "label": "About Link URL"
+        },
+        {
+            "type": "image_picker",
+            "id": "refund_icon",
+            "label": "Refund Icon"
+        },
+        {
+            "type": "text",
+            "id": "refund_text",
+            "label": "Refund Policy Text",
+            "default": "Refund Policy"
+        },
+        {
+            "type": "url",
+            "id": "refund_link",
+            "label": "Refund Policy URL"
+        },
+        {
+            "type": "header",
+            "content": "Third Column"
+        },
+        {
+            "type": "image_picker",
+            "id": "store_locator_icon",
+            "label": "Store Locator Icon"
+        },
+        {
+            "type": "text",
+            "id": "store_locator_text",
+            "label": "Store Locator Text",
+            "default": "Store Locator"
+        },
+        {
+            "type": "url",
+            "id": "store_locator_link",
+            "label": "Store Locator URL"
+        },
+        {
+            "type": "image_picker",
+            "id": "shipping_icon",
+            "label": "Shipping Icon"
+        },
+        {
+            "type": "text",
+            "id": "shipping_text",
+            "label": "Shipping Policy Text",
+            "default": "Shipping Policy"
+        },
+        {
+            "type": "url",
+            "id": "shipping_link",
+            "label": "Shipping Policy URL"
+        },
+        {
+            "type": "header",
+            "content": "Fourth Column"
+        },
+        {
+            "type": "image_picker",
+            "id": "contact_icon",
+            "label": "Contact Icon"
+        },
+        {
+            "type": "text",
+            "id": "contact_text",
+            "label": "Contact Text",
+            "default": "Contact Us"
+        },
+        {
+            "type": "url",
+            "id": "contact_link",
+            "label": "Contact URL"
+        },
+        {
+            "type": "image_picker",
+            "id": "terms_icon",
+            "label": "Terms Icon"
+        },
+        {
+            "type": "text",
+            "id": "terms_text",
+            "label": "Terms Text",
+            "default": "Terms Of Service"
+        },
+        {
+            "type": "url",
+            "id": "terms_link",
+            "label": "Terms URL"
+        },
+        {
+            "type": "header",
+            "content": "Payment Icons"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_payment_icons",
+            "label": "Show payment icons",
+            "default": true
+        }
+    ],
+    "presets": [
+        {
+            "name": "Main Footer",
+            "category": "Footer"
+        }
+    ]
+}
+{% endschema %}

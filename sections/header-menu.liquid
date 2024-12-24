@@ -1,0 +1,102 @@
+{{ 'header-menu.css' | asset_url | stylesheet_tag }}
+
+{%- schema -%}
+{
+  "name": "Menu Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color", 
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5B5F97"
+    },
+    {
+      "type": "link_list",
+      "id": "more_menu",
+      "label": "More Menu Items",
+      "default": "main-menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Menu Header",
+      "category": "Header"
+    }
+  ]
+}
+{%- endschema -%}
+
+<link href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css" rel="stylesheet">
+
+<div class="menu-header" style="background-color: {{ section.settings.background_color }}">
+  <div class="menu-container">
+    <nav class="main-nav">
+      <ul class="nav-items">
+        <li class="nav-item">
+          <a href="/collections/single-serve-coffee" style="color: {{ section.settings.text_color }}">SINGLE SERVE COFFEE</a>
+        </li>
+        <li class="nav-item">
+          <a href="/collections/coffee-bean" style="color: {{ section.settings.text_color }}">COFFEE BEAN</a>
+        </li>
+        <li class="nav-item">
+          <a href="/collections/gift-card" style="color: {{ section.settings.text_color }}">GIFT CARD</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="logo-container">
+      {%- if section.settings.logo -%}
+        <img src="{{ section.settings.logo | img_url: 'medium' }}" alt="{{ shop.name }}" class="header-logo">
+      {%- else -%}
+        <span class="h2" style="color: {{ section.settings.text_color }}">{{ shop.name }}</span>
+      {%- endif -%}
+    </div>
+
+    <nav class="secondary-nav">
+      <ul class="nav-items">
+        <li class="nav-item">
+          <a href="/pages/store-locator" style="color: {{ section.settings.text_color }}">STORE LOCATOR</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="more-btn" style="color: {{ section.settings.text_color }}">
+            MORE
+            <i class="icon ion-ios-arrow-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            {%- for link in linklists[section.settings.more_menu].links -%}
+              <li>
+                <a href="{{ link.url }}" style="color: {{ section.settings.text_color }}">{{ link.title }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="/search" style="color: {{ section.settings.text_color }}">
+            <i class="icon ion-ios-search"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/account" style="color: {{ section.settings.text_color }}">
+            <i class="icon ion-ios-person"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/cart" style="color: {{ section.settings.text_color }}">
+            <i class="icon ion-ios-cart"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

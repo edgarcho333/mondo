@@ -1,0 +1,124 @@
+{{ 'feedback.css' | asset_url | stylesheet_tag }}
+
+{% schema %}
+{
+  "name": "Testimonial Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Customer Reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Customer Name"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Testimonial Text",
+          "default": "Share your customer review here"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 5
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial Slider",
+      "blocks": [
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="testimonial-section">
+  <div class="testimonial-wrapper">
+    <div class="testimonial-slider">
+      <div class="testimonial-track">
+        {% for block in section.blocks %}
+          <div class="testimonial-slide" {{ block.shopify_attributes }}>
+            <div class="testimonial-stars">
+              {% for i in (1..block.settings.rating) %}
+                ★
+              {% endfor %}
+            </div>
+            <div class="testimonial-quote">
+              {{ block.settings.quote }}
+            </div>
+            <div class="testimonial-author">
+              - {{ block.settings.author }}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button class="slider-nav slider-prev">&#8249;</button>
+    <button class="slider-nav slider-next">&#8250;</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const track = document.querySelector('.testimonial-track');
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const prevBtn = document.querySelector('.slider-prev');
+  const nextBtn = document.querySelector('.slider-next');
+  
+  let currentIndex = 0;
+  const slidesToShow = window.innerWidth > 992 ? 3 : window.innerWidth > 768 ? 2 : 1;
+  const slideWidth = 100 / slidesToShow;
+  
+  // Set initial width for track and slides
+  track.style.width = `${slides.length * slideWidth}%`;
+  slides.forEach(slide => {
+    slide.style.width = `${slideWidth}%`;
+  });
+
+  function moveSlides(direction) {
+    const maxIndex = slides.length - slidesToShow;
+    if (direction === 'next') {
+      currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+    } else {
+      currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+    }
+    
+    track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+  }
+
+  prevBtn.addEventListener('click', () => moveSlides('prev'));
+  nextBtn.addEventListener('click', () => moveSlides('next'));
+
+  // Auto slide every 5 seconds
+  setInterval(() => moveSlides('next'), 5000);
+  
+  // Respond to window resize
+  window.addEventListener('resize', () => {
+    const newSlidesToShow = window.innerWidth > 992 ? 3 : window.innerWidth > 768 ? 2 : 1;
+    if (newSlidesToShow !== slidesToShow) {
+      location.reload();
+    }
+  });
+});
+</script>
