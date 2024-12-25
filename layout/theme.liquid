@@ -35,6 +35,7 @@ t4sp-theme t4s-wrapper__{{ settings.general_layout }}{% if settings.animations_r
     }
 </style>
   <head>
+    {{ 'tailwind.css' | asset_url | stylesheet_tag }}
  {%- render 'ecom_header' -%}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

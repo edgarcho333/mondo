@@ -1,0 +1,12 @@
+{
+  "name": "mondo-coffee-theme",
+  "version": "1.0.0",
+  "description": "Mondo Coffee Shopify Theme",
+  "scripts": {
+    "build": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --minify",
+    "watch": "tailwindcss -i ./src/tailwind.css -o ./assets/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
