@@ -1,1 +1,355 @@
-{"sections":{"header_menu_pfM6pX":{"type":"header-menu","disabled":true,"settings":{"logo":"shopify:\/\/shop_images\/image_2024-11-04_115119337.png","text_color":"#ffffff","background_color":"#61669d","more_menu":"main-menu"}},"banner_section_fjKamf":{"type":"Banner-section","settings":{"background_image":"shopify:\/\/shop_images\/WhatsApp_Image_2024-12-06_at_10.32.34_1.jpg","content_position":"left","heading":"Innovative Single Serve Coffee","text":"<p>Discover the world of coffee with mondo coffee<\/p>","button_text":"Shop collection","button_url":"shopify:\/\/collections"}},"custom_liquid_NdHPNT":{"type":"custom-liquid","settings":{"custom_liquid":"<!DOCTYPE html>\n<html>\n<head>\n<style>\n\/* Reset default browser styles *\/\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nbody, html {\n    margin: 0;\n    padding: 0;\n    width: 100%;\n    overflow-x: hidden;\n}\n\n.promo-banner {\n    width: 100vw;\n    background-color: #F3BA44;\n    color: white;\n    padding: 10px 0;\n    position: relative;\n    left: 50%;\n    right: 50%;\n    margin-left: -50vw;\n    margin-right: -50vw;\n}\n\n.promo-container {\n    max-width: 1200px;\n    margin: 0 auto;\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 20px;\n    padding: 0 15px;\n}\n\n.promo-item {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 14px;\n}\n\n.checkmark {\n    color: white;\n    font-weight: bold;\n}\n\n@media (max-width: 768px) {\n    .promo-container {\n        flex-direction: column;\n        text-align: center;\n        padding: 10px;\n    }\n    \n    .promo-item {\n        justify-content: center;\n    }\n}\n<\/style>\n<\/head>\n<body>\n\n<div class=\"promo-banner\">\n    <div class=\"promo-container\">\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓<\/span>\n            <span>Free Shipping on Orders $40+<\/span>\n        <\/div>\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓<\/span>\n            <span>Free Returns and Refunds<\/span>\n        <\/div>\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓<\/span>\n            <span>Satisfaction Guarantee<\/span>\n        <\/div>\n    <\/div>\n<\/div>\n\n<\/body>\n<\/html>","layout":"t4s-container-wrap","cl_bg":"","cl_bg_gradient":"","mg":",,50px,","pd":"","mg_tb":"","pd_tb":"","mg_mb":",,30px,","pd_mb":""}},"product_grid_custom_iMPpFh":{"type":"product-grid-CUSTOM","custom_css":[".product-grid-section {margin-left: 120px; margin-right: 120px;}"],"settings":{"collection":"drip-coffee","products_to_show":4,"section_title":"Choose Your Taste","title_size":24,"bg_color_1":"#fff5f5","title_1":"Drip Coffee Mix","price_regular_1":"$34.49","price_sale_1":"$13.99","button_text_1":"ADD TO CART","button_link_1":"#","button_color_1":"#ffffff","button_bg_1":"#e5a1b7","bg_color_2":"#fff5f5","title_2":"Single Serve Coffee Bags","price_2":"$22.99","button_text_2":"ADD TO CART","button_link_2":"#","button_color_2":"#ffffff","button_bg_2":"#e5a1b7","bg_color_3":"#fff5f5","title_3":"Drip Coffee Mix","price_regular_3":"$34.49","price_sale_3":"$13.99","button_text_3":"ADD TO CART","button_link_3":"#","button_color_3":"#ffffff","button_bg_3":"#e5a1b7","bg_color_4":"#fff5f5","title_4":"Drip Coffee Mix","price_regular_4":"$34.49","price_sale_4":"$13.99","button_text_4":"ADD TO CART","button_link_4":"#","button_color_4":"#ffffff","button_bg_4":"#e5a1b7"}},"banner_section_RnzXfQ":{"type":"Banner-section","settings":{"background_image":"shopify:\/\/shop_images\/WhatsApp_Image_2024-12-06_at_10.21.23.jpg","content_position":"left","heading":"Roots of Flavor: Brazil, Columbia, Ethiopia,  Costa Rica & more!","text":"","button_text":"More about mondo","button_url":"shopify:\/\/blogs\/newsroom\/mondo-coffee-beverly-hills-now-delivers-via-grubhub-and-ubereats"}},"partner_carousel_section_G3DRki":{"type":"partner-carousel-section","blocks":{"partner_m6yX8V":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_134945132-removebg-preview.png","partner_name":"","partner_link":""}},"partner_8fEKrJ":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135111588-removebg-preview.png","partner_name":"","partner_link":""}},"partner_Kwjd3f":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135231875-removebg-preview_1.png","partner_name":"","partner_link":""}},"partner_wwNTMe":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135418859-removebg-preview.png","partner_name":"","partner_link":""}},"partner_b4P3XJ":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135755842-removebg-preview_1.png","partner_name":"","partner_link":""}},"partner_GKaD6B":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_134945132-removebg-preview.png","partner_name":"","partner_link":""}},"partner_4fWpAc":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135111588-removebg-preview.png","partner_name":"","partner_link":""}},"partner_GUzMXY":{"type":"partner","settings":{"partner_logo":"shopify:\/\/shop_images\/image_2024-11-20_135231875-removebg-preview_1.png","partner_name":"","partner_link":""}}},"block_order":["partner_m6yX8V","partner_8fEKrJ","partner_Kwjd3f","partner_wwNTMe","partner_b4P3XJ","partner_GKaD6B","partner_4fWpAc","partner_GUzMXY"],"settings":{}},"coffee_products_cards_custom_HpbrQq":{"type":"coffee-products-cards-CUSTOM","blocks":{"coffee_card_VK8awH":{"type":"coffee_card","settings":{"image":"shopify:\/\/shop_images\/Screenshot018.png","title":"Coffee Title","description":"Coffee description goes here","button_text":"ORDER NOW","button_link":"","button_color":"#6366f1"}},"coffee_card_3fnKKV":{"type":"coffee_card","settings":{"image":"shopify:\/\/shop_images\/Screenshot_2024-10-25_110830.png","title":"Coffee Title","description":"Coffee description goes here","button_text":"ORDER NOW","button_link":"","button_color":"#6366f1"}},"coffee_card_xAa37Q":{"type":"coffee_card","settings":{"image":"shopify:\/\/shop_images\/Screenshot_2024-10-25_110653.png","title":"Coffee Title","description":"Coffee description goes here","button_text":"ORDER NOW","button_link":"","button_color":"#6366f1"}}},"block_order":["coffee_card_VK8awH","coffee_card_3fnKKV","coffee_card_xAa37Q"],"custom_css":[".coffee-products {margin-left: 120px; margin-right: 120px;}"],"settings":{}},"comments_custom_LGf3VJ":{"type":"comments-CUSTOM","blocks":{"testimonial_CFAfty":{"type":"testimonial","settings":{"rating":5,"title":"COFFEE MADE EASY - JUST LIKE A TEABAG","quote":"I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.","author":"ANNA D"}},"testimonial_dDchQM":{"type":"testimonial","settings":{"rating":5,"title":"COFFEE MADE EASY - JUST LIKE A TEABAG","quote":"I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.","author":"ANNA D"}},"testimonial_XL4mmH":{"type":"testimonial","settings":{"rating":5,"title":"COFFEE MADE EASY - JUST LIKE A TEABAG","quote":"I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.","author":"ANNA D"}},"testimonial_DzKWzt":{"type":"testimonial","settings":{"rating":5,"title":"COFFEE MADE EASY - JUST LIKE A TEABAG","quote":"I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.","author":"ANNA D"}}},"block_order":["testimonial_CFAfty","testimonial_dDchQM","testimonial_XL4mmH","testimonial_DzKWzt"],"custom_css":[".comments-section {margin-left: 120px; margin-right: 120px;}"],"settings":{"section_title":"Customer Reviews"}},"video_gallery_custom_dRryH4":{"type":"video-gallery-CUSTOM","blocks":{"video_yVeqcG":{"type":"video","settings":{"video_url":"https:\/\/www.youtube.com\/watch?v=slA2H_NC8gc","video_title":"Video Title"}},"video_mVMizc":{"type":"video","settings":{"video_url":"https:\/\/www.youtube.com\/watch?v=YcZlxeF32zU","video_title":"Video Title"}},"video_mjRcUc":{"type":"video","settings":{"video_url":"https:\/\/www.youtube.com\/watch?v=PwBoCCjaJlw","video_title":"Video Title"}},"video_PjxTag":{"type":"video","settings":{"video_url":"https:\/\/www.youtube.com\/watch?v=BJSbNH-rafs","video_title":"Video Title"}}},"block_order":["video_yVeqcG","video_mVMizc","video_mjRcUc","video_PjxTag"],"custom_css":[".video-gallery-section {margin-left: 120px; margin-right: 120px;}"],"settings":{"title":"Watch More About Mondo"}},"subscribe_banner_custom_azhF77":{"type":"subscribe-banner-CUSTOM","custom_css":[".subscribe-banner__container {margin-left: 120px; margin-right: 120px;}"],"settings":{"image":"shopify:\/\/shop_images\/d3b92f658a40600eca1a8501c3aabf16.jpg","background_color_left":"#b8765d","background_color_right":"#f5f5f5","heading":"Never Run Out Of Your Favorite Brew!","subheading":"World-Class Coffee, Delivered Through Your Letterbox","button_label":"SUBSCRIBE NOW","button_link":"","button_color":"#5c5e8e"}},"main_footer_9pxrYc":{"type":"main-footer","settings":{"footer_logo":"shopify:\/\/shop_images\/mondo-logo.png","logo_link":"","amazon_text":"Privacy Policy","amazon_link":"","privacy_text":"About Mondo","privacy_link":"shopify:\/\/policies\/privacy-policy","about_text":"Refund Policy","about_link":"","refund_text":"Contact Us","refund_link":"shopify:\/\/policies\/refund-policy","store_locator_text":"","store_locator_link":"","shipping_text":"","shipping_link":"","contact_text":"Terms Of Service","contact_link":"","terms_text":"","terms_link":"","show_payment_icons":true}}},"order":["header_menu_pfM6pX","banner_section_fjKamf","custom_liquid_NdHPNT","product_grid_custom_iMPpFh","banner_section_RnzXfQ","partner_carousel_section_G3DRki","coffee_products_cards_custom_HpbrQq","comments_custom_LGf3VJ","video_gallery_custom_dRryH4","subscribe_banner_custom_azhF77","main_footer_9pxrYc"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header_menu_pfM6pX": {
+      "type": "header-menu",
+      "disabled": true,
+      "settings": {
+        "logo": "shopify://shop_images/image_2024-11-04_115119337.png",
+        "text_color": "#ffffff",
+        "background_color": "#61669d",
+        "more_menu": "main-menu"
+      }
+    },
+    "banner_section_fjKamf": {
+      "type": "Banner-section",
+      "settings": {
+        "background_image": "shopify://shop_images/WhatsApp_Image_2024-12-06_at_10.32.34_1.jpg",
+        "content_position": "left",
+        "heading": "Innovative Single Serve Coffee",
+        "text": "<p>Discover the world of coffee with mondo coffee</p>",
+        "button_text": "Shop collection",
+        "button_url": "shopify://collections"
+      }
+    },
+    "custom_liquid_NdHPNT": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html>\n<head>\n<style>\n/* Reset default browser styles */\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nbody, html {\n    margin: 0;\n    padding: 0;\n    width: 100%;\n    overflow-x: hidden;\n}\n\n.promo-banner {\n    width: 100vw;\n    background-color: #F3BA44;\n    color: white;\n    padding: 10px 0;\n    position: relative;\n    left: 50%;\n    right: 50%;\n    margin-left: -50vw;\n    margin-right: -50vw;\n}\n\n.promo-container {\n    max-width: 1200px;\n    margin: 0 auto;\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    flex-wrap: wrap;\n    gap: 20px;\n    padding: 0 15px;\n}\n\n.promo-item {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 14px;\n}\n\n.checkmark {\n    color: white;\n    font-weight: bold;\n}\n\n@media (max-width: 768px) {\n    .promo-container {\n        flex-direction: column;\n        text-align: center;\n        padding: 10px;\n    }\n    \n    .promo-item {\n        justify-content: center;\n    }\n}\n</style>\n</head>\n<body>\n\n<div class=\"promo-banner\">\n    <div class=\"promo-container\">\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓</span>\n            <span>Free Shipping on Orders $40+</span>\n        </div>\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓</span>\n            <span>Free Returns and Refunds</span>\n        </div>\n        <div class=\"promo-item\">\n            <span class=\"checkmark\">✓</span>\n            <span>Satisfaction Guarantee</span>\n        </div>\n    </div>\n</div>\n\n</body>\n</html>",
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": ",,50px,",
+        "pd": "",
+        "mg_tb": "",
+        "pd_tb": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": ""
+      }
+    },
+    "product_grid_custom_iMPpFh": {
+      "type": "product-grid-CUSTOM",
+      "custom_css": [
+        ".product-grid-section {margin-left: 120px; margin-right: 120px;}"
+      ],
+      "settings": {
+        "collection": "drip-coffee",
+        "products_to_show": 4,
+        "cards_per_row": 4,
+        "section_title": "Choose Your Taste",
+        "title_size": 24,
+        "button_text_color": "#FFFFFF",
+        "button_bg_color": "#E5A1B7",
+        "sale_price_color": "#E5A1B7",
+        "product_bg_color": "#FFF5F5"
+      }
+    },
+    "banner_section_RnzXfQ": {
+      "type": "Banner-section",
+      "settings": {
+        "background_image": "shopify://shop_images/WhatsApp_Image_2024-12-06_at_10.21.23.jpg",
+        "content_position": "left",
+        "heading": "Roots of Flavor: Brazil, Columbia, Ethiopia,  Costa Rica & more!",
+        "text": "",
+        "button_text": "More about mondo",
+        "button_url": "shopify://blogs/newsroom/mondo-coffee-beverly-hills-now-delivers-via-grubhub-and-ubereats"
+      }
+    },
+    "partner_carousel_section_G3DRki": {
+      "type": "partner-carousel-section",
+      "blocks": {
+        "partner_m6yX8V": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_134945132-removebg-preview.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_8fEKrJ": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135111588-removebg-preview.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_Kwjd3f": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135231875-removebg-preview_1.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_wwNTMe": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135418859-removebg-preview.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_b4P3XJ": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135755842-removebg-preview_1.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_GKaD6B": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_134945132-removebg-preview.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_4fWpAc": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135111588-removebg-preview.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        },
+        "partner_GUzMXY": {
+          "type": "partner",
+          "settings": {
+            "partner_logo": "shopify://shop_images/image_2024-11-20_135231875-removebg-preview_1.png",
+            "partner_name": "",
+            "partner_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "partner_m6yX8V",
+        "partner_8fEKrJ",
+        "partner_Kwjd3f",
+        "partner_wwNTMe",
+        "partner_b4P3XJ",
+        "partner_GKaD6B",
+        "partner_4fWpAc",
+        "partner_GUzMXY"
+      ],
+      "settings": {}
+    },
+    "coffee_products_cards_custom_HpbrQq": {
+      "type": "coffee-products-cards-CUSTOM",
+      "blocks": {
+        "coffee_card_VK8awH": {
+          "type": "coffee_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot018.png",
+            "title": "Coffee Title",
+            "description": "Coffee description goes here",
+            "button_text": "ORDER NOW",
+            "button_link": "",
+            "button_color": "#6366f1"
+          }
+        },
+        "coffee_card_3fnKKV": {
+          "type": "coffee_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-10-25_110830.png",
+            "title": "Coffee Title",
+            "description": "Coffee description goes here",
+            "button_text": "ORDER NOW",
+            "button_link": "",
+            "button_color": "#6366f1"
+          }
+        },
+        "coffee_card_xAa37Q": {
+          "type": "coffee_card",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-10-25_110653.png",
+            "title": "Coffee Title",
+            "description": "Coffee description goes here",
+            "button_text": "ORDER NOW",
+            "button_link": "",
+            "button_color": "#6366f1"
+          }
+        }
+      },
+      "block_order": [
+        "coffee_card_VK8awH",
+        "coffee_card_3fnKKV",
+        "coffee_card_xAa37Q"
+      ],
+      "custom_css": [
+        ".coffee-products {margin-left: 120px; margin-right: 120px;}"
+      ],
+      "settings": {}
+    },
+    "comments_custom_LGf3VJ": {
+      "type": "comments-CUSTOM",
+      "blocks": {
+        "testimonial_CFAfty": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "COFFEE MADE EASY - JUST LIKE A TEABAG",
+            "quote": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.",
+            "author": "ANNA D"
+          }
+        },
+        "testimonial_dDchQM": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "COFFEE MADE EASY - JUST LIKE A TEABAG",
+            "quote": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.",
+            "author": "ANNA D"
+          }
+        },
+        "testimonial_XL4mmH": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "COFFEE MADE EASY - JUST LIKE A TEABAG",
+            "quote": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.",
+            "author": "ANNA D"
+          }
+        },
+        "testimonial_DzKWzt": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "title": "COFFEE MADE EASY - JUST LIKE A TEABAG",
+            "quote": "I Am Absolutely In Love With Mondo Coffee! It's So Easy To Use—Just Like A Teabag, But With Premium Coffee. Plus, The Taste Is Incredible! Rich, Bold, And Perfectly Balanced. It's Become My Favorite Way To Start The Day.",
+            "author": "ANNA D"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_CFAfty",
+        "testimonial_dDchQM",
+        "testimonial_XL4mmH",
+        "testimonial_DzKWzt"
+      ],
+      "custom_css": [
+        ".comments-section {margin-left: 120px; margin-right: 120px;}"
+      ],
+      "settings": {
+        "section_title": "Customer Reviews"
+      }
+    },
+    "video_gallery_custom_dRryH4": {
+      "type": "video-gallery-CUSTOM",
+      "blocks": {
+        "video_yVeqcG": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=slA2H_NC8gc",
+            "video_title": "Video Title"
+          }
+        },
+        "video_mVMizc": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=YcZlxeF32zU",
+            "video_title": "Video Title"
+          }
+        },
+        "video_mjRcUc": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=PwBoCCjaJlw",
+            "video_title": "Video Title"
+          }
+        },
+        "video_PjxTag": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://www.youtube.com/watch?v=BJSbNH-rafs",
+            "video_title": "Video Title"
+          }
+        }
+      },
+      "block_order": [
+        "video_yVeqcG",
+        "video_mVMizc",
+        "video_mjRcUc",
+        "video_PjxTag"
+      ],
+      "custom_css": [
+        ".video-gallery-section {margin-left: 120px; margin-right: 120px;}"
+      ],
+      "settings": {
+        "title": "Watch More About Mondo"
+      }
+    },
+    "subscribe_banner_custom_azhF77": {
+      "type": "subscribe-banner-CUSTOM",
+      "custom_css": [
+        ".subscribe-banner__container {margin-left: 120px; margin-right: 120px;}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/d3b92f658a40600eca1a8501c3aabf16.jpg",
+        "background_color_left": "#b8765d",
+        "background_color_right": "#f5f5f5",
+        "heading": "Never Run Out Of Your Favorite Brew!",
+        "subheading": "World-Class Coffee, Delivered Through Your Letterbox",
+        "button_label": "SUBSCRIBE NOW",
+        "button_link": "",
+        "button_color": "#5c5e8e"
+      }
+    },
+    "main_footer_9pxrYc": {
+      "type": "main-footer",
+      "settings": {
+        "footer_logo": "shopify://shop_images/mondo-logo.png",
+        "logo_link": "",
+        "amazon_text": "Privacy Policy",
+        "amazon_link": "",
+        "privacy_text": "About Mondo",
+        "privacy_link": "shopify://policies/privacy-policy",
+        "about_text": "Refund Policy",
+        "about_link": "",
+        "refund_text": "Contact Us",
+        "refund_link": "shopify://policies/refund-policy",
+        "store_locator_text": "",
+        "store_locator_link": "",
+        "shipping_text": "",
+        "shipping_link": "",
+        "contact_text": "Terms Of Service",
+        "contact_link": "",
+        "terms_text": "",
+        "terms_link": "",
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": [
+    "header_menu_pfM6pX",
+    "banner_section_fjKamf",
+    "custom_liquid_NdHPNT",
+    "product_grid_custom_iMPpFh",
+    "banner_section_RnzXfQ",
+    "partner_carousel_section_G3DRki",
+    "coffee_products_cards_custom_HpbrQq",
+    "comments_custom_LGf3VJ",
+    "video_gallery_custom_dRryH4",
+    "subscribe_banner_custom_azhF77",
+    "main_footer_9pxrYc"
+  ]
+}
