@@ -112,16 +112,6 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-  .product-grid {
-    display: block !important;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    max-width: none;
-  }
-  .swiper-slide {
-    height: auto;
-  }
 }
 
 .product-image-container {
@@ -145,6 +135,23 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.desktop-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mobile-slider {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-grid {
+    display: none;
+  }
+  .mobile-slider {
+    display: block;
+  }
+}
 {%- endstyle -%}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -155,12 +162,12 @@
     {{ section.settings.section_title }}
   </h2>
   
-  <div class="product-grid swiper">
-    <div class="swiper-wrapper">
-    {% if section.settings.collection != blank %}
-      {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+  {% if section.settings.collection != blank %}
+    {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+    
+    <div class="product-grid desktop-grid hidden md:grid">
       {% for product in products %}
-        <div class="rounded-2xl p-5 flex flex-col items-center text-center swiper-slide" style="background-color: {{ section.settings.product_bg_color }}">
+        <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
           <div class="product-image-container">
             <a href="{{ product.url }}" class="block w-full h-full relative">
               <img src="{{ product.featured_image | image_url: width: 300 }}" 
@@ -202,15 +209,68 @@
           </div>
         </div>
       {% endfor %}
-    {% else %}
-      <p class="text-gray-600">Please select a collection</p>
-    {% endif %}
     </div>
-  </div>
-  <script>
+
+    <div class="mobile-slider block md:hidden">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for product in products %}
+            <div class="swiper-slide">
+              <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
+                <div class="product-image-container">
+                  <a href="{{ product.url }}" class="block w-full h-full relative">
+                    <img src="{{ product.featured_image | image_url: width: 300 }}" 
+                         alt="{{ product.title }}" 
+                         class="transition-transform duration-300 hover:scale-105">
+                  </a>
+                </div>
+                <div class="w-full">
+                  <h3 class="mb-2.5">
+                    <a href="{{ product.url }}" class="text-base font-medium text-gray-800 hover:text-[{{ section.settings.button_bg_color }}] transition-colors duration-300">
+                      {{ product.title }}
+                    </a>
+                  </h3>
+                  <div class="flex justify-center items-center gap-2.5 mb-2.5">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price_max | money }}</span>
+                      <span class="font-medium" style="color: {{ section.settings.sale_price_color }}">
+                        {{ product.price | money }}
+                        <span class="inline-block px-1.5 py-0.5 text-xs font-bold text-white rounded" style="background-color: {{ section.settings.sale_price_color }}">
+                          -{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | round }}%
+                        </span>
+                      </span>
+                    {% else %}
+                      <span class="text-base font-medium text-gray-800">{{ product.price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <button 
+                    class="w-full py-3.5 px-5 rounded-full font-medium text-sm tracking-wider transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    style="color: {{ section.settings.button_text_color }}; background-color: {{ section.settings.button_bg_color }}"
+                    data-variant-id="{{ product.variants.first.id }}"
+                    {% unless product.available %}disabled{% endunless %}
+                  >
+                    {% if product.available %}
+                      ADD TO CART
+                    {% else %}
+                      SOLD OUT
+                    {% endif %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-gray-600">Please select a collection</p>
+  {% endif %}
+</div>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Swiper
-  if (window.innerWidth <= 640) {
+  // Initialize Swiper only on mobile
+  if (window.innerWidth <= 768) {
     const swiper = new Swiper('.swiper', {
       slidesPerView: 1.2,
       spaceBetween: 20,
@@ -267,4 +327,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</div>
