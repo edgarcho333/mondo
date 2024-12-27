@@ -159,6 +159,7 @@
         "coffee_card_HGGPqT": {
           "type": "coffee_card",
           "settings": {
+            "image": "shopify://shop_images/Screenshot018.png",
             "title": "Coffee Title",
             "description": "Coffee description goes here",
             "button_text": "ORDER NOW",
@@ -169,6 +170,7 @@
         "coffee_card_eWcmre": {
           "type": "coffee_card",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-10-25_110830.png",
             "title": "Coffee Title",
             "description": "Coffee description goes here",
             "button_text": "ORDER NOW",
@@ -179,6 +181,7 @@
         "coffee_card_BEMqNh": {
           "type": "coffee_card",
           "settings": {
+            "image": "shopify://shop_images/Screenshot_2024-10-25_110653.png",
             "title": "Coffee Title",
             "description": "Coffee description goes here",
             "button_text": "ORDER NOW",
