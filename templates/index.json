@@ -53,13 +53,13 @@
       "settings": {
         "collection": "drip-coffee",
         "products_to_show": 4,
-        "cards_per_row": 4,
+        "cards_per_row": 2,
         "section_title": "Choose Your Taste",
         "title_size": 24,
-        "button_text_color": "#FFFFFF",
-        "button_bg_color": "#E5A1B7",
-        "sale_price_color": "#E5A1B7",
-        "product_bg_color": "#FFF5F5"
+        "button_text_color": "#ffffff",
+        "button_bg_color": "#e5a1b7",
+        "sale_price_color": "#e5a1b7",
+        "product_bg_color": "#fff5f5"
       }
     },
     "banner_section_RnzXfQ": {
