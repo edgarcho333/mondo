@@ -1,4 +1,6 @@
 {{ 'coffee-products-cards-CUSTOM.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 {%- comment -%} sections/coffee-products.liquid {%- endcomment -%}
 <div class="coffee-products">
@@ -24,7 +26,57 @@
       </div>
     {%- endfor -%}
   </div>
+
+  <!-- მობილური სლაიდერი -->
+  <div class="coffee-products__slider">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {%- for block in section.blocks -%}
+          <div class="swiper-slide">
+            <div class="coffee-card" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img 
+                  src="{{ block.settings.image | img_url: 'master' }}"
+                  alt="{{ block.settings.title }}"
+                  class="coffee-card__image"
+                >
+              {%- endif -%}
+              
+              <h3 class="coffee-card__title">{{ block.settings.title }}</h3>
+              <p class="coffee-card__description">{{ block.settings.description }}</p>
+              
+              <a href="{{ block.settings.button_link }}"
+                class="coffee-card__button"
+                style="background-color: {{ block.settings.button_color }};">
+                {{ block.settings.button_text }}
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.innerWidth < 768) {
+    const swiper = new Swiper('.coffee-products__slider .swiper', {
+      slidesPerView: 'auto',
+      spaceBetween: 15,
+      centeredSlides: true,
+      loop: true,
+      grabCursor: true,
+      initialSlide: 1,
+      speed: 400,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      }
+    });
+  }
+});
+</script>
 
 {% schema %}
 {

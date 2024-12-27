@@ -6,15 +6,19 @@
 }
 
 .coffee-products__grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 30px;
-  margin: 0 auto;
+  display: none; /* დავმალოთ grid მობილურზე */
 }
 
 @media screen and (min-width: 768px) {
   .coffee-products__grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 0 auto;
+  }
+  
+  .coffee-products__slider {
+    display: none;
   }
 }
 
@@ -90,15 +94,28 @@
   opacity: 0.7;
 }
 
+/* მობილური სლაიდერის სტილები */
+.coffee-products__slider {
+  display: block;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.coffee-products__slider .swiper {
+  padding: 10px 5px;
+  margin: -10px -5px;
+}
+
+.coffee-products__slider .swiper-slide {
+  width: 85%;
+  height: auto;
+}
+
 /* მობილური ვერსიის სტილები */
 @media screen and (max-width: 767px) {
   .coffee-products {
-    padding: 20px 15px;
-  }
-
-  .coffee-products__grid {
-    gap: 25px;
-    padding: 0 10px;
+    padding: 20px 0;
   }
 
   .coffee-card {
@@ -109,7 +126,7 @@
   }
 
   .coffee-card:hover {
-    transform: translateY(-3px);
+    transform: none;
   }
 
   .coffee-card__title {
@@ -153,14 +170,14 @@
     margin-right: auto;
     transition: transform 0.3s ease;
   }
-
-  .coffee-card__image:active {
-    transform: scale(0.98);
-  }
 }
 
 /* პატარა მობილურებისთვის */
 @media screen and (max-width: 374px) {
+  .coffee-products__slider .swiper-slide {
+    width: 90%;
+  }
+
   .coffee-card {
     max-width: 260px;
     padding: 12px;
