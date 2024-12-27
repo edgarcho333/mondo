@@ -63,17 +63,32 @@ document.addEventListener('DOMContentLoaded', function() {
   if (window.innerWidth < 768) {
     const swiper = new Swiper('.coffee-products__slider .swiper', {
       slidesPerView: 'auto',
-      spaceBetween: 15,
+      spaceBetween: 20,
       centeredSlides: true,
       loop: true,
       grabCursor: true,
-      initialSlide: 1,
-      speed: 400,
+      initialSlide: 0,
+      speed: 600,
+      effect: 'slide',
       autoplay: {
         delay: 3000,
         disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      },
+      on: {
+        init: function() {
+          document.querySelector('.coffee-products__slider').style.opacity = '1';
+        }
       }
     });
+  }
+});
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth < 768) {
+    if (!document.querySelector('.coffee-products__slider .swiper-initialized')) {
+      location.reload();
+    }
   }
 });
 </script>
