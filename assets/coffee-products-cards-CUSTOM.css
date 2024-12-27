@@ -171,41 +171,84 @@
     padding: 0;
     overflow: hidden;
   }
-
+  
   .coffee-products__grid {
     display: none;
   }
+}
 
-  .coffee-products__slider .swiper-slide {
-    width: 100%;
-    padding: 0;
+/* პატარა მობილურებისთვის */
+@media screen and (max-width: 374px) {
+  .coffee-products__slider .coffee-card__title {
+    font-size: 18px;
+  }
+
+  .coffee-products__slider .coffee-card__description {
+    font-size: 13px;
+  }
+
+  .coffee-products__slider .coffee-card__button {
+    padding: 10px 15px;
+  }
+}
+
+/* მობილური ვერსიის სტილები */
+@media screen and (max-width: 767px) {
+  .coffee-products {
+    padding: 20px 0;
   }
 
   .coffee-card {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 20px;
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 320px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  .coffee-card:hover {
+    transform: none;
+  }
+
+  .coffee-card__title {
+    font-size: 20px;
+    margin-bottom: 8px;
+    padding: 0 5px;
+  }
+
+  .coffee-card__description {
+    font-size: 14px;
+    margin-bottom: 15px;
+    min-height: 60px;
+    padding: 0 5px;
+    line-height: 1.4;
+  }
+
+  .coffee-card__button {
+    padding: 12px 20px;
+    font-size: 14px;
+    width: 90%;
+    margin: 0 auto;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 0;
+  }
+
+  .coffee-card__features {
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+
+  .coffee-card__feature-icon {
+    width: 22px;
+    height: 22px;
   }
 
   .coffee-card__image {
-    width: 100%;
-    height: auto;
-    margin: 0 0 15px;
-    border-radius: 0;
-  }
-
-  .coffee-card__title,
-  .coffee-card__description,
-  .coffee-card__button {
-    padding: 0 15px;
-  }
-
-  .coffee-card__button {
-    width: 100%;
-    margin: 0 auto;
+    margin-bottom: 15px;
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease;
   }
 }
 
