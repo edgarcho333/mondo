@@ -97,18 +97,24 @@
 /* მობილური სლაიდერის სტილები */
 .coffee-products__slider {
   display: block;
-  width: 100%;
-  overflow: hidden;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  position: relative;
+  left: 50%;
+  right: 50%;
   padding: 20px 0;
 }
 
 .coffee-products__slider .swiper {
   overflow: visible;
+  width: 100%;
 }
 
 .coffee-products__slider .swiper-slide {
-  width: 280px;
+  width: 100%;
   height: auto;
+  padding: 0 15px;
 }
 
 .coffee-products__slider .coffee-card {
@@ -128,10 +134,11 @@
 
 .coffee-products__slider .coffee-card__image {
   width: 100%;
-  max-width: 200px;
+  max-width: none;
   height: auto;
-  margin: 15px auto;
-  object-fit: contain;
+  margin: 0 auto 15px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
 }
 
 .coffee-products__slider .coffee-card__title {
@@ -162,6 +169,7 @@
 @media screen and (max-width: 767px) {
   .coffee-products {
     padding: 0;
+    overflow: hidden;
   }
   
   .coffee-products__grid {
@@ -171,20 +179,16 @@
 
 /* პატარა მობილურებისთვის */
 @media screen and (max-width: 374px) {
-  .coffee-products__slider .swiper-slide {
-    width: 260px;
-  }
-
-  .coffee-products__slider .coffee-card__image {
-    max-width: 180px;
-  }
-
   .coffee-products__slider .coffee-card__title {
     font-size: 18px;
   }
 
   .coffee-products__slider .coffee-card__description {
     font-size: 13px;
+  }
+
+  .coffee-products__slider .coffee-card__button {
+    padding: 10px 15px;
   }
 }
 
