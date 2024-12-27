@@ -4,6 +4,7 @@
   padding: 40px 0;
   display: flex;
   align-items: center;
+  background-color: #red;
 }
 
 .comments-slider-container {
@@ -16,12 +17,10 @@
   display: flex;
   transition: transform 0.5s ease;
   gap: 30px;
-  width: 100%;
 }
 
 .comment-slide {
   min-width: calc((100% - 60px) / 3);
-  flex-shrink: 0;
   padding: 20px;
   text-align: center;
   box-sizing: border-box;
@@ -88,35 +87,9 @@
 }
 
 @media (max-width: 768px) {
-  .comments-section {
-    padding: 20px 0;
-  }
-  
-  .comments-slider-container {
-    padding: 0 40px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
   .comment-slide {
     min-width: 100%;
-    max-width: 100%;
-    padding: 15px;
   }
-  
-  .slider-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    padding: 8px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .prev { left: 5px; }
-  .next { right: 5px; }
   
   .comment-title {
     font-size: 14px;
