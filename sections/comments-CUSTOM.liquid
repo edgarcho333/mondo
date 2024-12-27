@@ -35,8 +35,9 @@ function moveSlider(direction) {
 
 function updateSlider() {
   const slider = document.getElementById('comments-slider');
-  const slideWidth = slides[0].offsetWidth + parseFloat(getComputedStyle(slides[0]).marginRight);
-  slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  const slideWidth = slides[0].offsetWidth;
+  const gap = 30;
+  slider.style.transform = `translateX(-${currentSlide * (slideWidth + gap)}px)`;
 }
 
 window.addEventListener('load', () => {
