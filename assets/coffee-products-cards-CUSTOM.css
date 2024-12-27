@@ -74,6 +74,23 @@
   opacity: 0.9;
 }
 
+.coffee-products__slider {
+  width: 100%; /* სლაიდერის სრული სიგანე */
+  overflow: hidden; /* ზედმეტი ელემენტების დამალვა */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* ავტომატური სიგანე */
+  margin: 0 auto;
+}
+
+.coffee-card {
+  max-width: 90%; /* ქარდის მაქსიმალური სიგანე */
+}
+
 /* დამატებითი სტილები გამჭვირვალე იკონებისთვის */
 .coffee-card__features {
   display: flex;
