@@ -82,3 +82,73 @@
   height: 24px;
   opacity: 0.7;
 }
+
+/* მობილური ვერსიის სტილები */
+@media screen and (max-width: 767px) {
+  .coffee-products {
+    padding: 20px 15px;
+  }
+
+  .coffee-products__grid {
+    gap: 20px;
+  }
+
+  .coffee-card {
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 320px;
+  }
+
+  .coffee-card__title {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  .coffee-card__description {
+    font-size: 14px;
+    margin-bottom: 15px;
+    min-height: 60px;
+  }
+
+  .coffee-card__button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .coffee-card__features {
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .coffee-card__feature-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .coffee-card__image {
+    margin-bottom: 15px;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* პატარა მობილურებისთვის (iPhone SE და მსგავსი) */
+@media screen and (max-width: 374px) {
+  .coffee-card {
+    max-width: 280px;
+  }
+
+  .coffee-card__title {
+    font-size: 18px;
+  }
+
+  .coffee-card__description {
+    font-size: 13px;
+    min-height: 55px;
+  }
+
+  .coffee-card__image {
+    max-width: 180px;
+  }
+}
