@@ -1,3 +1,5 @@
+{{ 'product-grid-CUSTOM.css' | asset_url | stylesheet_tag }}
+
 {% schema %}
 {
   "name": "Product Grid",
@@ -66,34 +68,16 @@
 }
 {% endschema %}
 
-{%- style -%}
-@media screen and (max-width: 640px) {
-  .product-grid {
-    display: block !important;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-  .swiper-slide {
-    height: auto;
-  }
-}
-{%- endstyle -%}
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <div class="py-10 px-5 mx-auto">
   <h2 class="text-left mb-8 font-medium" style="font-size: {{ section.settings.title_size }}px">
     {{ section.settings.section_title }}
   </h2>
   
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 product-grid swiper">
-    <div class="swiper-wrapper">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
     {% if section.settings.collection != blank %}
       {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
       {% for product in products %}
-        <div class="rounded-2xl p-5 flex flex-col items-center text-center swiper-slide" style="background-color: {{ section.settings.product_bg_color }}">
+        <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
           <div class="w-full h-[200px] flex items-center justify-center mb-4">
             <a href="{{ product.url }}" class="block w-full h-full">
               <img src="{{ product.featured_image | image_url: width: 300 }}" 
@@ -138,29 +122,9 @@
     {% else %}
       <p class="text-gray-600">Please select a collection</p>
     {% endif %}
-    </div>
   </div>
   <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Swiper
-  if (window.innerWidth <= 640) {
-    const swiper = new Swiper('.swiper', {
-      slidesPerView: 1.2,
-      spaceBetween: 20,
-      centeredSlides: false,
-      grabCursor: true,
-      loop: false,
-      breakpoints: {
-        320: {
-          slidesPerView: 1.2,
-        },
-        480: {
-          slidesPerView: 1.5,
-        }
-      }
-    });
-  }
-
   const addToCartButtons = document.querySelectorAll('button[data-variant-id]');
   
   addToCartButtons.forEach(button => {
