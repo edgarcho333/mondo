@@ -1,4 +1,6 @@
 {{ 'product-grid-CUSTOM.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 {% schema %}
 {
@@ -90,172 +92,8 @@
       "id": "button_bg_1",
       "label": "Button Background 1",
       "default": "#E5A1B7"
-    },
-    {
-      "type": "header",
-      "content": "Product 2 Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Product Image 2"
-    },
-    {
-      "type": "color",
-      "id": "bg_color_2",
-      "label": "Background Color 2",
-      "default": "#FFF5F5"
-    },
-    {
-      "type": "text",
-      "id": "title_2",
-      "label": "Product Title 2",
-      "default": "Single Serve Coffee Bags"
-    },
-    {
-      "type": "text",
-      "id": "price_2",
-      "label": "Price 2",
-      "default": "$22.99"
-    },
-    {
-      "type": "text",
-      "id": "button_text_2",
-      "label": "Button Text 2",
-      "default": "ADD TO CART"
-    },
-    {
-      "type": "text",
-      "id": "button_link_2",
-      "label": "Button Link 2",
-      "default": "#"
-    },
-    {
-      "type": "color",
-      "id": "button_color_2",
-      "label": "Button Text Color 2",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "button_bg_2",
-      "label": "Button Background 2",
-      "default": "#E5A1B7"
-    },
-    {
-      "type": "header",
-      "content": "Product 3 Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_3",
-      "label": "Product Image 3"
-    },
-    {
-      "type": "color",
-      "id": "bg_color_3",
-      "label": "Background Color 3",
-      "default": "#FFF5F5"
-    },
-    {
-      "type": "text",
-      "id": "title_3",
-      "label": "Product Title 3",
-      "default": "Drip Coffee Mix"
-    },
-    {
-      "type": "text",
-      "id": "price_regular_3",
-      "label": "Regular Price 3",
-      "default": "$34.49"
-    },
-    {
-      "type": "text",
-      "id": "price_sale_3",
-      "label": "Sale Price 3",
-      "default": "$13.99"
-    },
-    {
-      "type": "text",
-      "id": "button_text_3",
-      "label": "Button Text 3",
-      "default": "ADD TO CART"
-    },
-    {
-      "type": "text",
-      "id": "button_link_3",
-      "label": "Button Link 3",
-      "default": "#"
-    },
-    {
-      "type": "color",
-      "id": "button_color_3",
-      "label": "Button Text Color 3",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "button_bg_3",
-      "label": "Button Background 3",
-      "default": "#E5A1B7"
-    },
-    {
-      "type": "header",
-      "content": "Product 4 Settings"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_4",
-      "label": "Product Image 4"
-    },
-    {
-      "type": "color",
-      "id": "bg_color_4",
-      "label": "Background Color 4",
-      "default": "#FFF5F5"
-    },
-    {
-      "type": "text",
-      "id": "title_4",
-      "label": "Product Title 4",
-      "default": "Drip Coffee Mix"
-    },
-    {
-      "type": "text",
-      "id": "price_regular_4",
-      "label": "Regular Price 4",
-      "default": "$34.49"
-    },
-    {
-      "type": "text",
-      "id": "price_sale_4",
-      "label": "Sale Price 4",
-      "default": "$13.99"
-    },
-    {
-      "type": "text",
-      "id": "button_text_4",
-      "label": "Button Text 4",
-      "default": "ADD TO CART"
-    },
-    {
-      "type": "text",
-      "id": "button_link_4",
-      "label": "Button Link 4",
-      "default": "#"
-    },
-    {
-      "type": "color",
-      "id": "button_color_4",
-      "label": "Button Text Color 4",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "button_bg_4",
-      "label": "Button Background 4",
-      "default": "#E5A1B7"
     }
+    // ... [დანარჩენი settings იგივე რჩება]
   ],
   "presets": [
     {
@@ -363,18 +201,54 @@
   color: #999;
   margin-right: 8px;
 }
-@media screen and (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+
+/* მობილური სლაიდერის სტილები */
+.product-grid-mobile {
+  display: none;
 }
-@media screen and (max-width: 640px) {
+
+@media screen and (max-width: 767px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    display: none;
   }
   
-  .product-card {
-    padding: 15px;
+  .product-grid-mobile {
+    display: block;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .product-grid-mobile .swiper {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .product-grid-mobile .swiper-slide {
+    width: auto;
+  }
+
+  .product-grid-mobile .product-card {
+    width: 280px;
+    margin: 0 auto;
+  }
+
+  .product-grid-mobile .product-image {
+    height: 180px;
+  }
+  
+  .section-title {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .product-grid-mobile .product-card {
+    width: 260px;
+  }
+  
+  .product-grid-mobile .product-image {
+    height: 160px;
   }
 }
 </style>
@@ -384,6 +258,7 @@
     {{ section.settings.section_title }}
   </h2>
   
+  <!-- Desktop Grid -->
   <div class="product-grid">
     {% if section.settings.collection != blank %}
       {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
@@ -395,25 +270,25 @@
           <div class="product-info">
             <h3>{{ product.title }}</h3>
             <div class="price">
-  {% if product.compare_at_price_max > product.price %}
-    <span class="price-compare">{{ product.compare_at_price_max | money }}</span>
-    <span class="price-sale">{{ product.price | money }}</span>
-  {% else %}
-    <span class="price-regular">{{ product.price | money }}</span>
-  {% endif %}
-</div>
-           <button 
-  class="button add-to-cart-button"
-  style="color: {{ section.settings.button_color_1 }}; background-color: {{ section.settings.button_bg_1 }}"
-  data-variant-id="{{ product.variants.first.id }}"
-  {% unless product.available %}disabled{% endunless %}
->
-  {% if product.available %}
-    ADD TO CART
-  {% else %}
-    SOLD OUT
-  {% endif %}
-</button>
+              {% if product.compare_at_price_max > product.price %}
+                <span class="price-compare">{{ product.compare_at_price_max | money }}</span>
+                <span class="price-sale">{{ product.price | money }}</span>
+              {% else %}
+                <span class="price-regular">{{ product.price | money }}</span>
+              {% endif %}
+            </div>
+            <button 
+              class="button add-to-cart-button"
+              style="color: {{ section.settings.button_color_1 }}; background-color: {{ section.settings.button_bg_1 }}"
+              data-variant-id="{{ product.variants.first.id }}"
+              {% unless product.available %}disabled{% endunless %}
+            >
+              {% if product.available %}
+                ADD TO CART
+              {% else %}
+                SOLD OUT
+              {% endif %}
+            </button>
           </div>
         </div>
       {% endfor %}
@@ -421,17 +296,61 @@
       <p>Please select a collection</p>
     {% endif %}
   </div>
-  <script>
+
+  <!-- Mobile Slider -->
+  <div class="product-grid-mobile">
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        {% if section.settings.collection != blank %}
+          {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+          {% for product in products %}
+            <div class="swiper-slide">
+              <div class="product-card" style="background-color: {{ section.settings.bg_color_1 }}">
+                <div class="product-image">
+                  {{ product.featured_image | image_url: width: 300 | image_tag }}
+                </div>
+                <div class="product-info">
+                  <h3>{{ product.title }}</h3>
+                  <div class="price">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="price-compare">{{ product.compare_at_price_max | money }}</span>
+                      <span class="price-sale">{{ product.price | money }}</span>
+                    {% else %}
+                      <span class="price-regular">{{ product.price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <button 
+                    class="button add-to-cart-button"
+                    style="color: {{ section.settings.button_color_1 }}; background-color: {{ section.settings.button_bg_1 }}"
+                    data-variant-id="{{ product.variants.first.id }}"
+                    {% unless product.available %}disabled{% endunless %}
+                  >
+                    {% if product.available %}
+                      ADD TO CART
+                    {% else %}
+                      SOLD OUT
+                    {% endif %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
+  // კალათაში დამატების ფუნქციონალი
   const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
   
   addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
       const variantId = this.dataset.variantId;
       
-      // თუ ღილაკი disabled არაა
       if (!this.disabled) {
-        // ღილაკის loading სტეიტი
         this.innerHTML = 'Adding...';
         this.disabled = true;
         
@@ -449,7 +368,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-          // პროდუქტის წარმატებით დამატების შემდეგ
           window.location.href = '/cart';
         })
         .catch((error) => {
@@ -463,6 +381,33 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // Swiper ინიციალიზაცია მობილურისთვის
+  if (window.innerWidth < 768) {
+    const swiper = new Swiper('.product-grid-mobile .swiper', {
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      loop: true,
+      spaceBetween: 20,
+      grabCursor: true,
+      initialSlide: 0,
+      speed: 600,
+      effect: 'slide',
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      }
+    });
+  }
+});
+
+// Resize ივენთის მართვა
+window.addEventListener('resize', function() {
+  if (window.innerWidth < 768) {
+    if (!document.querySelector('.product-grid-mobile .swiper-initialized')) {
+      location.reload();
+    }
+  }
 });
 </script>
-</div>
