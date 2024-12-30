@@ -209,32 +209,39 @@
 
 @media screen and (max-width: 767px) {
   .product-grid-section {
-    padding: 40px 0; /* შევცვალეთ 20px-დან 0-მდე გვერდითი padding */
-  }
-  
-  .product-grid {
-    display: none;
-  }
-  
-  .section-title {
-    padding: 0 20px; /* სათაურისთვის შევინარჩუნოთ padding */
+    padding: 40px 0;
   }
   
   .product-grid-mobile {
-    display: block;
-    width: 100%;
-    padding: 0; /* გავასუფთავოთ padding */
+    width: 100vw; /* სრული viewport სიგანე */
+    margin-left: calc(-50vw + 50%); /* ცენტრირებისთვის */
+    margin-right: calc(-50vw + 50%);
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
   }
 
   .product-grid-mobile .swiper {
     width: 100%;
-    padding: 10px 0;
+  }
+
+  .product-grid-mobile .swiper-slide {
+    width: 100% !important; /* მნიშვნელოვანი override */
   }
 
   .product-grid-mobile .product-card {
-    width: 90vw; /* გამოვიყენოთ viewport width */
-    max-width: 400px;
-    margin: 0 auto;
+    width: 100%;
+    max-width: none;
+    padding: 20px;
+    margin: 0;
+    border-radius: 0; /* მოვაშოროთ მომრგვალება */
+  }
+
+  .product-grid-mobile .product-image {
+    width: 100%;
+    height: auto;
+    max-height: none;
   }
 }
 
