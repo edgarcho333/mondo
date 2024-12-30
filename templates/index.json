@@ -48,7 +48,8 @@
     "product_grid_custom_iMPpFh": {
       "type": "product-grid-CUSTOM",
       "custom_css": [
-        ".product-grid-section {margin-left: 120px; margin-right: 120px;}"
+        ".product-grid-section {margin-left: 120px; margin-right: 120px;}",
+        ".bss_pl_img {display: none!;}"
       ],
       "settings": {
         "collection": "drip-coffee",
