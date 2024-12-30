@@ -1,5 +1,3 @@
-{{ 'product-grid-CUSTOM.css' | asset_url | stylesheet_tag }}
-
 {% schema %}
 {
   "name": "Product Grid",
@@ -17,6 +15,15 @@
       "step": 4,
       "default": 4,
       "label": "Number of products to show"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2,
+      "label": "Cards per row (Desktop)"
     },
     {
       "type": "text",
@@ -68,261 +75,127 @@
 }
 {% endschema %}
 
-<style>
-.product-grid-section {
-  padding: 40px 20px;
+{%- style -%}
+.section-container {
+  padding: 2.5rem 120px;
   margin: 0 auto;
+  max-width: 1920px;
+  width: 100%;
+  box-sizing: border-box;
 }
-.section-title {
-  text-align: left;
-  margin-bottom: 30px;
-  font-weight: 500;
-}
+
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-.product-card {
-  border-radius: 20px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.product-image {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-}
-.product-image img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-.product-info {
-  width: 100%;
-}
-.product-info h3 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: 500;
-}
-.price {
-  margin: 10px 0;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-}
-.price-compare {
-  color: #999;
-  text-decoration: line-through;
-  font-size: 14px;
-}
-.price-sale,
-.price-regular {
-  color: #000;
-  font-weight: 500;
-  font-size: 16px;
-}
-.product-grid-section .button {
-  display: inline-block;
-  width: 100%;
-  padding: 14px 20px;
-  text-decoration: none;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
-  text-align: center;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  background-color: #E5A1B7;
-  color: white;
-  margin-top: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.product-grid-section .button:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-}
-.product-grid-section .price {
-  margin-bottom: 5px;
-}
-.product-grid-section .price-sale {
-  color: #E5A1B7;
-  font-weight: bold;
-}
-.product-grid-section .price-compare {
-  text-decoration: line-through;
-  color: #999;
-  margin-right: 8px;
-}
-.product-title {
-  color: #333;
-  text-decoration: none;
-  transition: color 0.3s ease;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.product-title:hover {
-  color: {{ section.settings.button_bg_color }};
-}
-
-.discount-badge {
-  display: inline-block;
-  background-color: {{ section.settings.sale_price_color }};
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-size: 12px;
-  margin-left: 8px;
-  font-weight: bold;
-}
-
-.product-image a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.product-image a:hover img {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+/* Responsive grid adjustments */
+@media screen and (max-width: 1280px) {
+  .section-container {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-  .product-card {
-    padding: 15px;
-  }
-  .product-image {
-    height: 180px;
-  }
-  .section-title {
-    font-size: 22px !important;
-    margin-bottom: 20px;
+  .section-container {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
-@media screen and (max-width: 767px) {
-  .product-grid-section {
-    padding: 20px 15px;
-  }
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .product-card {
-    padding: 10px;
-    border-radius: 15px;
-  }
-  .product-image {
-    height: 150px;
-    margin-bottom: 10px;
-  }
-  .product-info h3 {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
-  .price {
-    margin: 5px 0;
-  }
-  .price-regular,
-  .price-sale {
-    font-size: 14px;
-  }
-  .price-compare {
-    font-size: 12px;
-  }
-  .product-grid-section .button {
-    padding: 10px 15px;
-    font-size: 13px;
-    margin-top: 8px;
-  }
-  .section-title {
-    font-size: 20px !important;
-    margin-bottom: 15px;
-  }
-  .discount-badge {
-    font-size: 11px;
-    padding: 2px 4px;
+@media screen and (max-width: 640px) {
+  .section-container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+.product-image-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.product-image-container img {
+  width: auto;
+  height: auto;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.desktop-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mobile-slider {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-grid {
+    display: none;
   }
-  .product-card {
-    padding: 8px;
-  }
-  .product-image {
-    height: 130px;
-  }
-  .product-info h3 {
-    font-size: 13px;
-  }
-  .price-regular,
-  .price-sale {
-    font-size: 13px;
-  }
-  .price-compare {
-    font-size: 11px;
-  }
-  .product-grid-section .button {
-    padding: 8px 12px;
-    font-size: 12px;
-  }
-  .section-title {
-    font-size: 18px !important;
-    margin-bottom: 12px;
+  .mobile-slider {
+    display: block;
   }
 }
-</style>
+{%- endstyle -%}
 
-<div class="product-grid-section">
-  <h2 class="section-title" style="font-size: {{ section.settings.title_size }}px">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<div class="section-container py-10 px-5 mx-auto">
+  <h2 class="text-left mb-8 font-medium" style="font-size: {{ section.settings.title_size }}px">
     {{ section.settings.section_title }}
   </h2>
   
-  <div class="product-grid">
-    {% if section.settings.collection != blank %}
-      {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+  {% if section.settings.collection != blank %}
+    {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
+    
+    <div class="product-grid desktop-grid hidden md:grid">
       {% for product in products %}
-        <div class="product-card" style="background-color: {{ section.settings.product_bg_color }}">
-          <div class="product-image">
-            <a href="{{ product.url }}">
-              {{ product.featured_image | image_url: width: 300 | image_tag }}
+        <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
+          <div class="product-image-container">
+            <a href="{{ product.url }}" class="block w-full h-full relative">
+              <img src="{{ product.featured_image | image_url: width: 300 }}" 
+                   alt="{{ product.title }}" 
+                   class="transition-transform duration-300 hover:scale-105">
             </a>
           </div>
-          <div class="product-info">
-            <h3><a href="{{ product.url }}" class="product-title">{{ product.title }}</a></h3>
-            <div class="price">
+          <div class="w-full">
+            <h3 class="mb-2.5">
+              <a href="{{ product.url }}" class="text-base font-medium text-gray-800 hover:text-[{{ section.settings.button_bg_color }}] transition-colors duration-300">
+                {{ product.title }}
+              </a>
+            </h3>
+            <div class="flex justify-center items-center gap-2.5 mb-2.5">
               {% if product.compare_at_price_max > product.price %}
-                <span class="price-compare">{{ product.compare_at_price_max | money }}</span>
-                <span class="price-sale" style="color: {{ section.settings.sale_price_color }}">
+                <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price_max | money }}</span>
+                <span class="font-medium" style="color: {{ section.settings.sale_price_color }}">
                   {{ product.price | money }}
-                  <span class="discount-badge">
+                  <span class="inline-block px-1.5 py-0.5 text-xs font-bold text-white rounded" style="background-color: {{ section.settings.sale_price_color }}">
                     -{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | round }}%
                   </span>
                 </span>
               {% else %}
-                <span class="price-regular">{{ product.price | money }}</span>
+                <span class="text-base font-medium text-gray-800">{{ product.price | money }}</span>
               {% endif %}
             </div>
             <button 
-              class="button add-to-cart-button"
+              class="w-full py-3.5 px-5 rounded-full font-medium text-sm tracking-wider transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               style="color: {{ section.settings.button_text_color }}; background-color: {{ section.settings.button_bg_color }}"
               data-variant-id="{{ product.variants.first.id }}"
               {% unless product.available %}disabled{% endunless %}
@@ -336,21 +209,92 @@
           </div>
         </div>
       {% endfor %}
-    {% else %}
-      <p>Please select a collection</p>
-    {% endif %}
-  </div>
-  <script>
+    </div>
+
+    <div class="mobile-slider block md:hidden">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          {% for product in products %}
+            <div class="swiper-slide">
+              <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
+                <div class="product-image-container">
+                  <a href="{{ product.url }}" class="block w-full h-full relative">
+                    <img src="{{ product.featured_image | image_url: width: 300 }}" 
+                         alt="{{ product.title }}" 
+                         class="transition-transform duration-300 hover:scale-105">
+                  </a>
+                </div>
+                <div class="w-full">
+                  <h3 class="mb-2.5">
+                    <a href="{{ product.url }}" class="text-base font-medium text-gray-800 hover:text-[{{ section.settings.button_bg_color }}] transition-colors duration-300">
+                      {{ product.title }}
+                    </a>
+                  </h3>
+                  <div class="flex justify-center items-center gap-2.5 mb-2.5">
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price_max | money }}</span>
+                      <span class="font-medium" style="color: {{ section.settings.sale_price_color }}">
+                        {{ product.price | money }}
+                        <span class="inline-block px-1.5 py-0.5 text-xs font-bold text-white rounded" style="background-color: {{ section.settings.sale_price_color }}">
+                          -{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | round }}%
+                        </span>
+                      </span>
+                    {% else %}
+                      <span class="text-base font-medium text-gray-800">{{ product.price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <button 
+                    class="w-full py-3.5 px-5 rounded-full font-medium text-sm tracking-wider transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    style="color: {{ section.settings.button_text_color }}; background-color: {{ section.settings.button_bg_color }}"
+                    data-variant-id="{{ product.variants.first.id }}"
+                    {% unless product.available %}disabled{% endunless %}
+                  >
+                    {% if product.available %}
+                      ADD TO CART
+                    {% else %}
+                      SOLD OUT
+                    {% endif %}
+                  </button>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <p class="text-gray-600">Please select a collection</p>
+  {% endif %}
+</div>
+
+<script>
 document.addEventListener('DOMContentLoaded', function() {
-  const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+  // Initialize Swiper only on mobile
+  if (window.innerWidth <= 768) {
+    const swiper = new Swiper('.swiper', {
+      slidesPerView: 1.2,
+      spaceBetween: 20,
+      centeredSlides: false,
+      grabCursor: true,
+      loop: false,
+      breakpoints: {
+        320: {
+          slidesPerView: 1.2,
+        },
+        480: {
+          slidesPerView: 1.5,
+        }
+      }
+    });
+  }
+
+  const addToCartButtons = document.querySelectorAll('button[data-variant-id]');
   
   addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
       const variantId = this.dataset.variantId;
       
-      // თუ ღილაკი disabled არაა
       if (!this.disabled) {
-        // ღილაკის loading სტეიტი
         this.innerHTML = 'Adding...';
         this.disabled = true;
         
@@ -368,7 +312,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-          // პროდუქტის წარმატებით დამატების შემდეგ
           window.location.href = '/cart';
         })
         .catch((error) => {
@@ -384,4 +327,3 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
-</div>
