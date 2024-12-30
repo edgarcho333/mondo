@@ -1,1 +1,47 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "link": ""
+      }
+    },
+    "main_footer_HXw9Mq": {
+      "type": "main-footer",
+      "settings": {
+        "footer_logo": "shopify://shop_images/mondo-logo_aef434a6-c406-44a7-90de-1d96c82580f3.png",
+        "logo_link": "",
+        "amazon_text": "",
+        "amazon_link": "",
+        "privacy_text": "Privacy Policy",
+        "privacy_link": "",
+        "about_text": "About Mondo",
+        "about_link": "",
+        "refund_text": "Refund Policy",
+        "refund_link": "",
+        "store_locator_text": "",
+        "store_locator_link": "",
+        "shipping_text": "",
+        "shipping_link": "",
+        "contact_text": "Contact Us",
+        "contact_link": "",
+        "terms_text": "Terms Of Service",
+        "terms_link": "",
+        "show_payment_icons": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_footer_HXw9Mq"
+  ]
+}
