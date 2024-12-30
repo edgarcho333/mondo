@@ -49,7 +49,7 @@
       "type": "product-grid-CUSTOM",
       "custom_css": [
         ".product-grid-section {margin-left: 120px; margin-right: 120px;}",
-        ".bss_pl_img {display: none;}"
+        ".bss-pl-frontend.bss-pl-top-left.bss_pl_text_hover_link_disable {display: none;}"
       ],
       "settings": {
         "collection": "drip-coffee",
