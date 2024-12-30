@@ -48,18 +48,13 @@
     "product_grid_custom_iMPpFh": {
       "type": "product-grid-CUSTOM",
       "custom_css": [
-        ".product-grid-section {margin-left: 120px; margin-right: 120px;}",
-        ".bss_pl_img {display: none!important;}"
+        ".bss_pl_img {display: none !important;}"
       ],
       "settings": {
         "collection": "drip-coffee",
         "products_to_show": 4,
         "section_title": "Choose Your Taste",
-        "title_size": 34,
-        "button_text_color": "#ffffff",
-        "button_bg_color": "#e5a1b7",
-        "sale_price_color": "#e5a1b7",
-        "product_bg_color": "#fff5f5"
+        "title_size": 34
       }
     },
     "banner_section_RnzXfQ": {
