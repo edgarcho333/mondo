@@ -281,9 +281,7 @@
         "video_mjRcUc",
         "video_PjxTag"
       ],
-      "custom_css": [
-        ".video-gallery-section {margin-left: 120px; margin-right: 120px;}"
-      ],
+      "custom_css": [],
       "settings": {
         "title": "Watch More About Mondo"
       }
