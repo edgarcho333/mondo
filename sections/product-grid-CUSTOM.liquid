@@ -67,50 +67,7 @@
 {% endschema %}
 
 {%- style -%}
-.section-container {
-  padding-left: 120px;
-  padding-right: 120px;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-  margin: 0 auto;
-  max-width: 1920px;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-}
-
-/* Responsive grid adjustments */
-@media screen and (max-width: 1536px) {
-  .product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media screen and (max-width: 1280px) {
-  .section-container {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .section-container {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-}
-
 @media screen and (max-width: 640px) {
-  .section-container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
   .product-grid {
     display: block !important;
     width: 100%;
@@ -148,12 +105,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<div class="section-container py-10 px-5 mx-auto">
+<div class="py-10 px-5 mx-auto">
   <h2 class="text-left mb-8 font-medium" style="font-size: {{ section.settings.title_size }}px">
     {{ section.settings.section_title }}
   </h2>
   
-  <div class="product-grid swiper">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 product-grid swiper">
     <div class="swiper-wrapper">
     {% if section.settings.collection != blank %}
       {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
