@@ -222,66 +222,24 @@
 
   .product-grid-mobile .swiper {
     width: 100%;
-    padding: 10px;
-    overflow: visible;  /* ეს საშუალებას მოგვცემს დავინახოთ მეზობელი სლაიდები */
+    padding: 10px 0;
   }
 
   .product-grid-mobile .swiper-slide {
-    width: 85%;  /* შევამციროთ სლაიდის სიგანე */
-    max-width: 320px;
+    width: auto;
   }
 
   .product-grid-mobile .product-card {
-    width: 100%;  /* ბარათი დაიკავებს მთლიან სივრცეს */
-    margin: 0;
-    height: auto;  /* სიმაღლე ავტომატურად მოერგოს კონტენტს */
-    min-height: 400px;  /* მინიმალური სიმაღლე */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 280px;
+    margin: 0 auto;
   }
-  
+
   .product-grid-mobile .product-image {
-    height: 200px;
-    width: 100%;
-    padding: 10px;
-  }
-
-  .product-grid-mobile .product-info {
-    padding: 15px 10px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .product-grid-mobile .button {
-    margin-top: 15px;
-    width: 100%;
+    height: 180px;
   }
   
   .section-title {
     padding: 0 20px;
-    margin-bottom: 20px;
-  }
-}
-
-/* პატარა ეკრანებისთვის დამატებითი ოპტიმიზაცია */
-@media screen and (max-width: 374px) {
-  .product-grid-mobile .swiper-slide {
-    width: 90%;
-  }
-  
-  .product-grid-mobile .product-card {
-    min-height: 380px;
-  }
-  
-  .product-grid-mobile .product-image {
-    height: 180px;
-  }
-
-  .product-grid-mobile .product-info h3 {
-    font-size: 14px;
   }
 }
 
