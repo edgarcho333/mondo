@@ -1359,6 +1359,9 @@
           "catpr_TDwMRb",
           "catpr_9He3GP"
         ],
+        "custom_css": [
+          ".t4s-mb-tab__title.t4s-col-item.t4s-pr.t4s-d-flex.t4s-align-items-center.t4s-justify-content-center {display: none!important;}"
+        ],
         "settings": {}
       },
       "mb_cat": {
