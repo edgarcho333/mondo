@@ -1,329 +1,96 @@
+{{ 'product-grid-CUSTOM.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-products-grid">
+  <h2 class="section-title">{{ section.settings.title }}</h2>
+  <div class="products-container">
+    {% for product in section.settings.collection.products limit: 4 %}
+      <div class="product-card">
+        <div class="product-image-container">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | img_url: '400x' }}" 
+              alt="{{ product.title }}"
+              class="product-image"
+              loading="lazy"
+            >
+          {% endif %}
+          {% if product.available %}
+            <span class="stock-badge">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M13.3334 4L6.00008 11.3333L2.66675 8" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+          {% endif %}
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">{{ product.title }}</h3>
+          {% if product.compare_at_price > product.price %}
+            <div class="product-price">
+              <span class="price-regular">{{ product.compare_at_price | money }}</span>
+              <span class="price-sale">{{ product.price | money }}</span>
+            </div>
+          {% else %}
+            <div class="product-price">
+              <span class="price-regular">{{ product.price | money }}</span>
+            </div>
+          {% endif %}
+          <button class="add-to-cart-btn" 
+            onclick="addToCart('{{ product.variants.first.id }}')">
+            ADD TO CART
+          </button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% schema %}
 {
-  "name": "Product Grid",
+  "name": "Custom Products Grid",
   "settings": [
     {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 4,
-      "max": 12,
-      "step": 4,
-      "default": 4,
-      "label": "Number of products to show"
-    },
-    {
-      "type": "range",
-      "id": "cards_per_row",
-      "min": 1,
-      "max": 4,
-      "step": 1,
-      "default": 4,
-      "label": "Cards per row (Desktop)"
-    },
-    {
       "type": "text",
-      "id": "section_title",
+      "id": "title",
       "label": "Section Title",
       "default": "Choose Your Taste"
     },
     {
-      "type": "range",
-      "id": "title_size",
-      "min": 16,
-      "max": 50,
-      "step": 1,
-      "unit": "px",
-      "label": "Title Size",
-      "default": 24
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#FFFFFF"
-    },
-    {
-      "type": "color",
-      "id": "button_bg_color",
-      "label": "Button Background Color",
-      "default": "#E5A1B7"
-    },
-    {
-      "type": "color",
-      "id": "sale_price_color",
-      "label": "Sale Price Color",
-      "default": "#E5A1B7"
-    },
-    {
-      "type": "color",
-      "id": "product_bg_color",
-      "label": "Product Background Color",
-      "default": "#FFF5F5"
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
     }
   ],
   "presets": [
     {
-      "name": "Product Grid (CUSTOM)",
-      "category": "Custom Sections"
+      "name": "Custom Products Grid",
+      "category": "Products"
     }
   ]
 }
 {% endschema %}
 
-{%- style -%}
-.section-container {
-  padding: 2.5rem 120px;
-  margin: 0 auto;
-  max-width: 1920px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 20px;
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-/* Responsive grid adjustments */
-@media screen and (max-width: 1280px) {
-  .section-container {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .section-container {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .section-container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-}
-
-.product-image-container {
-  width: 100%;
-  height: 200px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.product-image-container img {
-  width: auto;
-  height: auto;
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.desktop-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.mobile-slider {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  .desktop-grid {
-    display: none;
-  }
-  .mobile-slider {
-    display: block;
-  }
-}
-{%- endstyle -%}
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<div class="section-container py-10 px-5 mx-auto">
-  <h2 class="text-left mb-8 font-medium" style="font-size: {{ section.settings.title_size }}px">
-    {{ section.settings.section_title }}
-  </h2>
-  
-  {% if section.settings.collection != blank %}
-    {% assign products = section.settings.collection.products | limit: section.settings.products_to_show %}
-    
-    <div class="product-grid desktop-grid hidden md:grid">
-      {% for product in products %}
-        <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
-          <div class="product-image-container">
-            <a href="{{ product.url }}" class="block w-full h-full relative">
-              <img src="{{ product.featured_image | image_url: width: 300 }}" 
-                   alt="{{ product.title }}" 
-                   class="transition-transform duration-300 hover:scale-105">
-            </a>
-          </div>
-          <div class="w-full">
-            <h3 class="mb-2.5">
-              <a href="{{ product.url }}" class="text-base font-medium text-gray-800 hover:text-[{{ section.settings.button_bg_color }}] transition-colors duration-300">
-                {{ product.title }}
-              </a>
-            </h3>
-            <div class="flex justify-center items-center gap-2.5 mb-2.5">
-              {% if product.compare_at_price_max > product.price %}
-                <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price_max | money }}</span>
-                <span class="font-medium" style="color: {{ section.settings.sale_price_color }}">
-                  {{ product.price | money }}
-                  <span class="inline-block px-1.5 py-0.5 text-xs font-bold text-white rounded" style="background-color: {{ section.settings.sale_price_color }}">
-                    -{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | round }}%
-                  </span>
-                </span>
-              {% else %}
-                <span class="text-base font-medium text-gray-800">{{ product.price | money }}</span>
-              {% endif %}
-            </div>
-            <button 
-              class="w-full py-3.5 px-5 rounded-full font-medium text-sm tracking-wider transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-              style="color: {{ section.settings.button_text_color }}; background-color: {{ section.settings.button_bg_color }}"
-              data-variant-id="{{ product.variants.first.id }}"
-              {% unless product.available %}disabled{% endunless %}
-            >
-              {% if product.available %}
-                ADD TO CART
-              {% else %}
-                SOLD OUT
-              {% endif %}
-            </button>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="mobile-slider block md:hidden">
-      <div class="swiper">
-        <div class="swiper-wrapper">
-          {% for product in products %}
-            <div class="swiper-slide">
-              <div class="rounded-2xl p-5 flex flex-col items-center text-center" style="background-color: {{ section.settings.product_bg_color }}">
-                <div class="product-image-container">
-                  <a href="{{ product.url }}" class="block w-full h-full relative">
-                    <img src="{{ product.featured_image | image_url: width: 300 }}" 
-                         alt="{{ product.title }}" 
-                         class="transition-transform duration-300 hover:scale-105">
-                  </a>
-                </div>
-                <div class="w-full">
-                  <h3 class="mb-2.5">
-                    <a href="{{ product.url }}" class="text-base font-medium text-gray-800 hover:text-[{{ section.settings.button_bg_color }}] transition-colors duration-300">
-                      {{ product.title }}
-                    </a>
-                  </h3>
-                  <div class="flex justify-center items-center gap-2.5 mb-2.5">
-                    {% if product.compare_at_price_max > product.price %}
-                      <span class="text-sm text-gray-400 line-through">{{ product.compare_at_price_max | money }}</span>
-                      <span class="font-medium" style="color: {{ section.settings.sale_price_color }}">
-                        {{ product.price | money }}
-                        <span class="inline-block px-1.5 py-0.5 text-xs font-bold text-white rounded" style="background-color: {{ section.settings.sale_price_color }}">
-                          -{{ product.compare_at_price_max | minus: product.price | times: 100.0 | divided_by: product.compare_at_price_max | round }}%
-                        </span>
-                      </span>
-                    {% else %}
-                      <span class="text-base font-medium text-gray-800">{{ product.price | money }}</span>
-                    {% endif %}
-                  </div>
-                  <button 
-                    class="w-full py-3.5 px-5 rounded-full font-medium text-sm tracking-wider transition-all duration-300 hover:opacity-90 hover:-translate-y-0.5 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
-                    style="color: {{ section.settings.button_text_color }}; background-color: {{ section.settings.button_bg_color }}"
-                    data-variant-id="{{ product.variants.first.id }}"
-                    {% unless product.available %}disabled{% endunless %}
-                  >
-                    {% if product.available %}
-                      ADD TO CART
-                    {% else %}
-                      SOLD OUT
-                    {% endif %}
-                  </button>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  {% else %}
-    <p class="text-gray-600">Please select a collection</p>
-  {% endif %}
-</div>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Swiper only on mobile
-  if (window.innerWidth <= 768) {
-    const swiper = new Swiper('.swiper', {
-      slidesPerView: 1.2,
-      spaceBetween: 20,
-      centeredSlides: false,
-      grabCursor: true,
-      loop: false,
-      breakpoints: {
-        320: {
-          slidesPerView: 1.2,
-        },
-        480: {
-          slidesPerView: 1.5,
-        }
-      }
-    });
-  }
-
-  const addToCartButtons = document.querySelectorAll('button[data-variant-id]');
-  
-  addToCartButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const variantId = this.dataset.variantId;
-      
-      if (!this.disabled) {
-        this.innerHTML = 'Adding...';
-        this.disabled = true;
-        
-        fetch('/cart/add.js', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            items: [{
-              id: variantId,
-              quantity: 1
-            }]
-          })
-        })
-        .then(response => response.json())
-        .then(data => {
-          window.location.href = '/cart';
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-          this.innerHTML = 'Error';
-          setTimeout(() => {
-            this.innerHTML = 'ADD TO CART';
-            this.disabled = false;
-          }, 1000);
-        });
-      }
-    });
+function addToCart(variantId) {
+  fetch('/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      items: [{
+        id: variantId,
+        quantity: 1
+      }]
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(window.refreshCart) {
+      window.refreshCart();
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
   });
-});
+}
 </script>
