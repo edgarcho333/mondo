@@ -208,15 +208,22 @@
 }
 
 @media screen and (max-width: 767px) {
+  .product-grid-section {
+    padding: 40px 0; /* შევცვალეთ 20px-დან 0-მდე გვერდითი padding */
+  }
+  
   .product-grid {
     display: none;
+  }
+  
+  .section-title {
+    padding: 0 20px; /* სათაურისთვის შევინარჩუნოთ padding */
   }
   
   .product-grid-mobile {
     display: block;
     width: 100%;
-    padding: 0;
-    overflow: hidden;
+    padding: 0; /* გავასუფთავოთ padding */
   }
 
   .product-grid-mobile .swiper {
@@ -224,21 +231,10 @@
     padding: 10px 0;
   }
 
-  .product-grid-mobile .swiper-slide {
-    width: auto;
-  }
-
   .product-grid-mobile .product-card {
-    width: 280px;
+    width: 90vw; /* გამოვიყენოთ viewport width */
+    max-width: 400px;
     margin: 0 auto;
-  }
-
-  .product-grid-mobile .product-image {
-    height: 180px;
-  }
-  
-  .section-title {
-    padding: 0 20px;
   }
 }
 
