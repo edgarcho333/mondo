@@ -288,9 +288,7 @@
     },
     "subscribe_banner_custom_azhF77": {
       "type": "subscribe-banner-CUSTOM",
-      "custom_css": [
-        ".subscribe-banner__container {margin-left: 120px; margin-right: 120px;}"
-      ],
+      "custom_css": [],
       "settings": {
         "image": "shopify://shop_images/d3b92f658a40600eca1a8501c3aabf16.jpg",
         "background_color_left": "#b8765d",
