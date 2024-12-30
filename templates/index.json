@@ -238,9 +238,7 @@
         "testimonial_XL4mmH",
         "testimonial_DzKWzt"
       ],
-      "custom_css": [
-        ".comments-section {margin-left: 120px; margin-right: 120px;}"
-      ],
+      "custom_css": [],
       "settings": {
         "section_title": "Customer Reviews"
       }
