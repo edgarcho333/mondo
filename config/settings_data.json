@@ -498,7 +498,7 @@
           "base_PRL4VX"
         ],
         "custom_css": [
-          ".t4s-header__logo.t4s-lh-1 {margin-left: 120px;}",
+          ".t4s-header__logo.t4s-lh-1 {margin-left: 0px;}",
           ".t4s-site-nav__icons.t4s-use__kalles.is--hover2.t4s-h-cart__design2.t4s-lh-1.t4s-d-inline-flex.t4s-align-items-center {margin-right: 100px;}"
         ],
         "settings": {
@@ -1360,12 +1360,15 @@
           "catpr_9He3GP"
         ],
         "custom_css": [
-          ".t4s-mb-tab__title.t4s-col-item.t4s-pr.t4s-d-flex.t4s-align-items-center.t4s-justify-content-center {display: none!important;}"
+          ".t4s-mb-tab__title.t4s-col-item.t4s-pr.t4s-d-flex.t4s-align-items-center.t4s-justify-content-center {display: none !important;}"
         ],
         "settings": {}
       },
       "mb_cat": {
         "type": "mb_cat",
+        "custom_css": [
+          ".t4s-mb-tab__title. {display: none !important;}"
+        ],
         "settings": {}
       },
       "mini_cart": {
