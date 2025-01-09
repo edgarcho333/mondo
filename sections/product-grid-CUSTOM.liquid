@@ -343,20 +343,17 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // კალათაში დამატების ფუნქციონალი
   const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
   const miniCart = document.getElementById('t4s-mini_cart');
   
   addToCartButtons.forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
+    button.addEventListener('click', function() {
+      const variantId = this.dataset.variantId;
       
-      // Get the variant ID from the closest product card
-      const productCard = button.closest('.product-card');
-      const variantId = button.dataset.variantId;
-      
-      if (!button.disabled && variantId) {
-        button.innerHTML = 'Adding...';
-        button.disabled = true;
+      if (!this.disabled) {
+        this.innerHTML = 'Adding...';
+        this.disabled = true;
         
         fetch('/cart/add.js', {
           method: 'POST',
@@ -372,36 +369,28 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-          // Show mini cart
+          // მინი-კალათის გამოჩენა
           if (miniCart) {
-            miniCart.classList.remove('t4s-dn');
+            miniCart.classList.remove('t4s-dn'); // Remove display none class
             miniCart.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('t4s-overflow-hidden');
+            document.body.classList.add('t4s-overflow-hidden'); // Prevent body scroll
           }
           
-          // Reset button state
-          button.innerHTML = 'ADD TO CART';
-          button.disabled = false;
-          
-          // Optional: Update cart count if you have a cart counter
-          if (data.item_count !== undefined) {
-            // Update any cart count displays here
-          }
+          // ღილაკის ტექსტის აღდგენა
+          this.innerHTML = 'ADD TO CART';
+          this.disabled = false;
         })
         .catch((error) => {
           console.error('Error:', error);
-          button.innerHTML = 'Error';
+          this.innerHTML = 'Error';
           setTimeout(() => {
-            button.innerHTML = 'ADD TO CART';
-            button.disabled = false;
+            this.innerHTML = 'ADD TO CART';
+            this.disabled = false;
           }, 1000);
         });
       }
     });
   });
-
-  // Rest of your existing Swiper code...
-});
 
   // Swiper ინიციალიზაცია მობილურისთვის
   if (window.innerWidth < 768) {
