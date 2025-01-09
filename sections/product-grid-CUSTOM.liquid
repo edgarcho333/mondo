@@ -345,6 +345,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   // კალათაში დამატების ფუნქციონალი
   const addToCartButtons = document.querySelectorAll('.add-to-cart-button');
+  const miniCart = document.getElementById('t4s-mini_cart');
   
   addToCartButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -368,11 +369,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-          // მინი-კალათის გამოძახება
-          if (typeof window.openCartDrawer === 'function') {
-            window.openCartDrawer();
-          } else {
-            document.querySelector('[data-cart-drawer-trigger]')?.click();
+          // მინი-კალათის გამოჩენა
+          if (miniCart) {
+            miniCart.classList.remove('t4s-dn'); // Remove display none class
+            miniCart.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('t4s-overflow-hidden'); // Prevent body scroll
           }
           
           // ღილაკის ტექსტის აღდგენა
