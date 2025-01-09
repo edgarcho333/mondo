@@ -369,22 +369,27 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
        .then(data => {
-  // მინი-კალათის გამოჩენა
-  if (miniCart) {
-    miniCart.classList.remove('t4s-dn');
-    miniCart.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('t4s-overflow-hidden');
-    
-    // გადატვირთვა მცირე დაყოვნების შემდეგ
-    setTimeout(() => {
-      location.reload();
-    }, 300);
-  }
-  
-  // ღილაკის ტექსტის აღდგენა
-  this.innerHTML = 'ADD TO CART';
-  this.disabled = false;
-})
+  // fetch cart data to force refresh
+  fetch('/?section_id=cart-items')
+    .then(response => response.text())
+    .then(() => {
+      // Show mini cart using theme's built-in functionality
+      if (miniCart) {
+        miniCart.classList.remove('t4s-dn');
+        miniCart.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('t4s-overflow-hidden');
+        
+        // Trigger cart refresh event if exists
+        if (typeof T4SThemeSP !== 'undefined' && T4SThemeSP.Helpers) {
+          T4SThemeSP.Helpers.updateCart();
+        }
+      }
+      
+      // Reset button
+      this.innerHTML = 'ADD TO CART';
+      this.disabled = false;
+    });
+});
         .catch((error) => {
           console.error('Error:', error);
           this.innerHTML = 'Error';
