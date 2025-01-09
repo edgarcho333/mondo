@@ -93,7 +93,6 @@
       "label": "Button Background 1",
       "default": "#E5A1B7"
     }
-    // ... [დანარჩენი settings იგივე რჩება]
   ],
   "presets": [
     {
@@ -369,7 +368,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-          window.location.href = '/cart';
+          // მინი-კალათის გამოძახება
+          if (typeof window.openCartDrawer === 'function') {
+            window.openCartDrawer();
+          } else {
+            document.querySelector('[data-cart-drawer-trigger]')?.click();
+          }
+          
+          // ღილაკის ტექსტის აღდგენა
+          this.innerHTML = 'ADD TO CART';
+          this.disabled = false;
         })
         .catch((error) => {
           console.error('Error:', error);
