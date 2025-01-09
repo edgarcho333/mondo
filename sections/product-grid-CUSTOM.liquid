@@ -368,18 +368,38 @@ document.addEventListener('DOMContentLoaded', function() {
           })
         })
         .then(response => response.json())
-        .then(data => {
-          // მინი-კალათის გამოჩენა
-          if (miniCart) {
-            miniCart.classList.remove('t4s-dn'); // Remove display none class
-            miniCart.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('t4s-overflow-hidden'); // Prevent body scroll
-          }
-          
-          // ღილაკის ტექსტის აღდგენა
-          this.innerHTML = 'ADD TO CART';
-          this.disabled = false;
-        })
+       .then(data => {
+  // მინი-კალათის გამოჩენა
+  if (miniCart) {
+    miniCart.classList.remove('t4s-dn');
+    miniCart.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('t4s-overflow-hidden');
+
+    // განვაახლოთ მინი-კალათის შიგთავსი
+    fetch('/cart.js')
+      .then(response => response.json())
+      .then(cartData => {
+        const cartItems = document.querySelector('[data-cart-items]');
+        if (cartItems) {
+          // ვხსნით XHR მოთხოვნას კალათის სექციის მისაღებად
+          fetch('?section_id=mini-cart')
+            .then(response => response.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(html, 'text/html');
+              const newItems = doc.querySelector('[data-cart-items]');
+              if (newItems) {
+                cartItems.innerHTML = newItems.innerHTML;
+              }
+            });
+        }
+      });
+  }
+  
+  // ღილაკის ტექსტის აღდგენა
+  this.innerHTML = 'ADD TO CART';
+  this.disabled = false;
+})
         .catch((error) => {
           console.error('Error:', error);
           this.innerHTML = 'Error';
