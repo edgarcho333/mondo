@@ -86,6 +86,57 @@
 {%- endif -%}
 
    <div class="t4s-drawer__header"><span>{{ 'cart.mini_cart.title' | t }}</span><button class="t4s-drawer__close" data-drawer-close aria-label="{{ 'cart.mini_cart.close_cart' | t }}"><svg class="t4s-iconsvg-close" role="presentation" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg></button></div>
+  <div class="t4s-shipping-progress">
+  <div class="t4s-shipping-bar-container" data-cart-shipping-container>
+    <div class="t4s-shipping-bar" style="width: {{ cart.total_price | times: 100.0 | divided_by: 4000 }}%"></div>
+  </div>
+  <div class="t4s-shipping-message">
+    {% if cart.total_price < 4000 %}
+      <span data-cart-shipping-text data-cart-total-price="{{ cart.total_price }}">
+        Add {{ 4000 | minus: cart.total_price | money }} to unlock free shipping on AeroPress branded products!
+      </span>
+      <span class="t4s-shipping-icon">🚛</span>
+    {% else %}
+      <span data-cart-shipping-text>
+        You've got FREE shipping! 
+      </span>
+      <span class="t4s-shipping-icon">🎉</span>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+.t4s-shipping-progress {
+  margin: 10px 15px;
+}
+
+.t4s-shipping-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.t4s-shipping-bar {
+  height: 100%;
+  background-color: #E31837;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.t4s-shipping-message {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.t4s-shipping-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+</style>
   <!-- ამ კოდს დავამატებთ t4s-drawer__header დივის შემდეგ -->
 <style>
 .t4s-shipping-progress {
