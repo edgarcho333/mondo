@@ -133,10 +133,7 @@
 {% assign progress_percentage = cart.total_price | times: 100.0 | divided_by: free_shipping_threshold %}
 {% if progress_percentage > 100 %}{% assign progress_percentage = 100 %}{% endif %}
 
-<div class="t4s-shipping-progress">
-  <div class="t4s-shipping-bar-container">
-    <div class="t4s-shipping-bar" style="width: {{ progress_percentage }}%"></div>
-  </div>
+
   <div class="t4s-shipping-message">
     {% if cart.total_price < free_shipping_threshold %}
       Add {{ free_shipping_threshold | minus: cart.total_price | money }} to unlock free shipping on AeroPress branded products!
