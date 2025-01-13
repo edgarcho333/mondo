@@ -86,6 +86,69 @@
 {%- endif -%}
 
    <div class="t4s-drawer__header"><span>{{ 'cart.mini_cart.title' | t }}</span><button class="t4s-drawer__close" data-drawer-close aria-label="{{ 'cart.mini_cart.close_cart' | t }}"><svg class="t4s-iconsvg-close" role="presentation" viewBox="0 0 16 14"><path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path></svg></button></div>
+  <!-- ამ კოდს დავამატებთ t4s-drawer__header დივის შემდეგ -->
+<style>
+.t4s-shipping-progress {
+  margin: 10px 15px;
+}
+
+.t4s-shipping-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.t4s-shipping-bar {
+  height: 100%;
+  background-color: #E31837;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.t4s-shipping-message {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.t4s-shipping-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+</style>
+
+<div class="t4s-drawer__header">
+  <span>{{ 'cart.mini_cart.title' | t }}</span>
+  <button class="t4s-drawer__close" data-drawer-close aria-label="{{ 'cart.mini_cart.close_cart' | t }}">
+    <svg class="t4s-iconsvg-close" role="presentation" viewBox="0 0 16 14">
+      <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+    </svg>
+  </button>
+</div>
+
+{% assign free_shipping_threshold = 4000 %}
+{% assign progress_percentage = cart.total_price | times: 100.0 | divided_by: free_shipping_threshold %}
+{% if progress_percentage > 100 %}{% assign progress_percentage = 100 %}{% endif %}
+
+<div class="t4s-shipping-progress">
+  <div class="t4s-shipping-bar-container">
+    <div class="t4s-shipping-bar" style="width: {{ progress_percentage }}%"></div>
+  </div>
+  <div class="t4s-shipping-message">
+    {% if cart.total_price < free_shipping_threshold %}
+      Add {{ free_shipping_threshold | minus: cart.total_price | money }} to unlock free shipping on AeroPress branded products!
+      <span class="t4s-shipping-icon">🚛</span>
+    {% else %}
+      You've got FREE shipping! 
+      <span class="t4s-shipping-icon">🎉</span>
+    {% endif %}
+  </div>
+</div>
+
+<!-- დანარჩენი კოდი რჩება უცვლელი -->
    {%- if se_stts.enable_calc_ship and shipping_amount > -1 -%}
       {%- liquid
       assign shipping_money = shipping_amount | money 
