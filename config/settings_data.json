@@ -1953,7 +1953,8 @@
       ".footer-container {border-top-left-radius: 15px; border-top-right-radius: 15px; background-color: #f1f1f1; padding: 20px;}",
       ".feature-icons {display: none;}",
       ".t4s-cart_page_txt {display: none;}",
-      "audio, canvas, embed, iframe, img, object, svg, video {display: inline !important; vertical-align: initial !important;}"
+      "audio,canvas,embed,iframe,img,object,svg,video {display: inline !important; vertical-align: initial !important;}",
+      ".bss_pl_img {display: none;}"
     ]
   }
 }
