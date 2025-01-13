@@ -204,15 +204,6 @@
       </div>
       </div>
       <div class="t4s-drawer__bottom">
-        {% if cart.total_price < 4000 %}
-  <div class="free-shipping-message">
-    Add {{ 4000 | minus: cart.total_price | money }} more for FREE shipping!
-  </div>
-{% else %}
-  <div class="free-shipping-message">
-    You've got FREE shipping! 🎉
-  </div>
-{% endif %}
          <div data-cart-discounts>
          {%- if cart.cart_level_discount_applications != blank -%}
             <ul class="t4s-cart_discounts">
